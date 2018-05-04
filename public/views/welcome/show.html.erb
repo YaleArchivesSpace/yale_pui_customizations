@@ -1,0 +1,31 @@
+<%# adjusted html a bit, and added container-fluid
+since that's where the 15px margin-left is at, for whatever reason %>
+<div class="row container-fluid">
+  <h1><%= t('brand.welcome_head') %></h1>
+</div>
+
+<%# mdc: removed digital object limit manually, since it's added here.
+would like to be add something like this:
+[t('search-limit', :limit => 'Beinecke'),'',:search_url => "repositories/{repo_id}/search"]
+but we can't pass the search_url parameter as a limit option right now
+%>
+    <%= render partial: 'shared/search', locals: {
+      :search_url => "/search",
+      :title => t('archive._plural'),
+      :limit_options => [
+            ["#{t('actions.search')} #{t('search-limits.all')}",''],
+            [t('search-limit', :limit => t('search-limits.resources')),'resource']
+          ],
+      :field_options => [
+            ["#{t('search_results.filter.fullrecord')}",''],
+            ["#{t('search_results.filter.title')}",'title'],
+            ["#{t('search_results.filter.creators')}",'creators_text'],
+            ["#{t('search_results.filter.subjects')}",'subjects_text'],
+            ["#{t('search_results.filter.identifier')}", 'four_part_id']
+           ]
+    } %>
+<%# moved to the bottom; updated the YML file with slightly better HTML
+but not sure if that HTML should be in a YML file! %>
+<div class="row">
+ <%= t('brand.welcome_message').html_safe %>
+</div>

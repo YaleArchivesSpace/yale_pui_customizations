@@ -1,0 +1,65 @@
+<%#mdc: should the aria-labels be pulled from the YML files, instead???
+for now i just pulled up the aria-label and added it to the section element %>
+<section id="navigation" aria-label="primary navigation links">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid navbar-header top-bar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsemenu"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsemenu">
+        <ul class="nav nav navbar-nav">
+          <%# new stuff... add to plugin, later
+          and also make sure the link is not active when
+          on homepage (or just remove this link altogether
+          since it duplicates the div.h1 link) %>
+
+          <%# (change the bit after proxy_url if this section is uncommented,
+          in order to add the Home link back.)
+          <li>
+            <a href="<%= AppConfig[:public_proxy_url] >" title="Archives at Yale">
+                <span>Home</span>
+                <span class="sr-only">Return to Homepage</span>
+              </a>
+          </li>
+          %>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="<%= app_prefix("/repositories") %>">
+              <%= t('repository._plural') %> <span class="caret hidden-xs"></span></a>
+            <ul class="dropdown-menu hidden-xs">
+              <li><a href="<%= app_prefix("/repositories/11") %>">Beinecke Rare Book and Manuscripts Library</a></li>
+<%#
+need a real way to do this...
+but for now, i'm just hardcoding this as a proof of concept
+%>
+              <li><a href="<%= app_prefix("/repositories/12") %>">Manuscripts and Archives</a></li>
+              <li><a href="<%= app_prefix("/repositories/10") %>">Medical Historical Library, Harvey Cushing / John Hay Whitney Medical Library</a></li>
+              <li><a href="<%= app_prefix("/repositories/8") %>">The Lewis Walpole Library</a></li>
+              <li><a href="<%= app_prefix("/repositories/2") %>">Yale Center for British Art, Rare Books and Manuscripts</a></li>
+              <li><a href="<%= app_prefix("/repositories/15") %>">Yale Peabody Museum of Natural History</a></li>
+              <li><a href="<%= app_prefix("/repositories/5") %>">Yale University Arts Library</a></li>
+              <li><a href="<%= app_prefix("/repositories/4") %>">Yale University Divinity School Library</a></li>
+              <li><a href="<%= app_prefix("/repositories/6") %>">Yale University Music Library</a></li>
+            </ul>
+          </li>
+
+          <%# TODO: add class="active" if we're on that page %>
+          <% $MAIN_MENU.drop(1).each do |link| %>
+            <li><a href="<%= app_prefix(link[0]) %>"><%= t(link[1]) %></a></li>
+          <% end %>
+          <% unless AppConfig[:pui_hide][:search_tab] %>
+            <li><a href="<%=  app_prefix('/search?reset=true') %>" title="<%= I18n.t('search_tab', :target => t('archive._plural'))%>">
+                <span class="fa fa-search" aria-hidden="true"></span>
+                <span class="sr-only"><%= I18n.t('search_tab', :target => t('archive._plural')) %></span>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>

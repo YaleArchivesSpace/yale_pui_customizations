@@ -1,0 +1,17 @@
+en:
+  brand:
+    title: Archives at Yale
+    title_link_text: Return to the Archives at Yale homepage
+    welcome_head: Welcome to Archives at Yale
+    welcome_message: |
+        <hr/>
+        <div class="col-sm-6">
+          <h3>About this Site</h3>
+          <p>Archives at Yale contains finding aids from 10 libraries and repositories at Yale University. Finding aids describe the creation, content, context, and arrangement of archival materials, allowing users to identify and request materials relevant to their research.
+          <strong>Use Archives at Yale to browse, explore, and discover Yale’s extraordinary collections of primary sources.</strong></p>
+        </div>
+        <div class="col-sm-6">
+          <h3>Requesting Materials</h3>
+          <p>Each finding aid contains a link to request materials from the collections.
+          <strong>Each repository has its own location, hours, and policies for providing access to its collections.</strong> Please consult the repository with questions about using the materials. Collections are non-circulating and must be used in the repository’s reading room. In many cases the collections are stored off-site and require advance notice for retrieval. Some finding aids contain digitized versions of all or parts of a collection, but in most cases viewing a collection in its entirety will require visiting the repository.</p>
+        </div>
