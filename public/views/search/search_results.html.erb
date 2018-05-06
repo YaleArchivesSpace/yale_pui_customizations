@@ -1,0 +1,115 @@
+<% results_type = (defined?(@results_type) ? @results_type : t('search_results.results')) %>
+
+<div class="row">
+
+  <div class="col-sm-12">
+     <%= render partial: 'shared/breadcrumbs' %>
+     <% if defined?(@search_title) %>
+     <h1><%= @search_title %></h1>
+     <% end %>
+
+<%#mdc: also had to remove the digital object filter from here
+%>
+     <% if defined?(@reset) && @reset %>
+        <%= render partial: 'shared/search', locals: {:search_url => @base_search,
+                                                    :title => t('archive._plural'),
+                                                    :limit_options => [["#{t('actions.search')} #{t('search-limits.all')}",''],
+                                                                       [t('search-limit', :limit => t('search-limits.resources')),'resource']],
+                                                    :field_options => [["#{t('search_results.filter.fullrecord')}",''],
+                                                                       ["#{t('search_results.filter.title')}",'title'],
+                                                                       ["#{t('search_results.filter.creators')}",'creators_text'],
+                                                                       ["#{t('search_results.filter.subjects')}",'subjects_text'],
+                                                                       ["#{t('search_results.filter.identifier')}", 'identifier'] ],
+                                                    :header_size => '1',
+                                                    :show_header => true } %>
+       <% else %>
+
+       <% unless defined?(@no_statement) %>
+         <div class="searchstatement">
+           <div class="btn btn-group pull-right">
+             <%= link_to I18n.t('actions.new_search'), (defined?(@new_search) ? @new_search : root_path), :class => "btn btn-sm btn-default" %>
+             <button class="btn btn-sm btn-default" id="toggleRefineSearch" aria-expanded="false" aria-controls="refineSearchPanel"><%= I18n.t('actions.refine_search') %></button>
+           </div>
+
+           <% if defined?(@search) %>
+             <%= @search[:search_statement].html_safe %>
+           <% end %>
+
+           <div id="refineSearchPanel" class="container refinesearch" aria-hidden="true" style="display:none;">
+             <%= render partial: 'shared/search', locals: {:search_url => @base_search,
+                                                           :title => t('archive._plural'),
+                                                           :limit_options => [["#{t('actions.search')} #{t('search-limits.all')}",''],
+                                                                              [t('search-limit', :limit => t('search-limits.resources')),'resource']],
+                                                           :field_options => [["#{t('search_results.filter.fullrecord')}",''],
+                                                                              ["#{t('search_results.filter.title')}",'title'],
+                                                                              ["#{t('search_results.filter.creators')}",'creators_text'],
+                                                                              ["#{t('search_results.filter.subjects')}",'subjects_text'],
+                                                                              ["#{t('search_results.filter.identifier')}", 'four_part_id'] ],
+                                                           :show_header => false } %>
+           </div>
+         </div>
+       <% end %>
+
+       <% if defined?(@results) %>
+       <%# should refactor everything to control the h1-h6 levels, but
+       for now i'm just changing things in place (and this fix needs to be there for accessiblity reasons, as well
+       as to have decent HTML output) %>
+       <h1><%= t('search_results.results_head', {:type => results_type, :start => @results['offset_first'],
+              :end => @results['offset_last'], :total => @results['total_hits'] })  %></h1>
+       <% end %>
+       <% end %>
+       </div>
+
+     </div>
+
+     <%#mdc: new stuff, per S&E group %>
+     <% if ['Subjects', 'Names'].include?(@results_type) %>
+     <div class="row">
+       <div class="col-sm-12">
+         <% if @results_type == 'Subjects' %>
+          <%= t('brand.subject_intro').html_safe %>
+         <% elsif @results_type == 'Names' %>
+          <%= t('brand.agent_intro').html_safe %>
+         <% end %>
+       </div>
+     </div>
+     <% end %>
+
+
+  <% if defined?(@results) %>
+     <div class="row">
+       <!-- mdc: update (move those facets to the left;
+       but now we need to add some aria skip links, etc.) -->
+       <div class="col-sm-3">
+         <a name="filter" title="<%= t('internal_links.filter') %>"></a>
+         <%= render partial: 'shared/facets' %>
+       </div>
+
+       <div class="col-sm-9">
+         <a name="main" title="<%= t('internal_links.main') %>"></a>
+         <div class="row">
+           <div class="col-sm-8">
+             <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
+           </div>
+         <%= render partial: 'shared/sorter' %>
+         </div>
+
+         <div class="row search-results">
+
+           <div class="col-sm-12">
+             <a name="searchresults" id="searchresults"></a>
+             <% @results.records.each do |result| %>
+               <%= render partial: 'shared/result', locals: {:result => result, :props => (@result_props || {}).merge({:full => false})} %>
+             <% end %>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="col-sm-9">
+               <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
+             </div>
+           </div>
+         </div>
+
+     </div>
+  <% end %>

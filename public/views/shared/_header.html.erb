@@ -1,0 +1,11 @@
+<header id="header" role="banner">
+  <div class="row">
+    <%# mdc: changed section to header (above) and added a role attribute.
+    also:
+    no more second div (removed since we're not using a logo / also need to keep the site accessible)
+    means we can change the 9 to a 12 for the grid  %>
+    <div class="col-sm-12 h1"><% unless request.original_fullpath == '/' %>
+        <a title="<%=t('brand.title_link_text') %>" href="<%= AppConfig[:public_proxy_url] %>"><% end %> <%= t('brand.title') %><% unless request.original_fullpath == '/' %></a><% end %>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+<%#
+mdc: before/during soft launch, i should harmonize how the ask a question plugin
+and suggest a correction features work.  no reason that they couldn't both be done on the server side,
+and the only thing that would need to change would be pass a parameter to change
+the base URL (or consolidate the two forms into one).
+%>
+
+<%
+base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
+context = request.original_url
+title = @result['primary_type'] == 'digital_object' ? @result['json']['title'] : @result['json']['display_string'].to_s
+repo = @result['json']['repository']['_resolved']['name'].to_s
+callno =
+if @result['primary_type'] == 'resource'
+  then @result['json']['id_0']
+elsif @result['primary_type'] == 'accession'
+  then @result['json']['id_0'] + '-' + @result['json']['id_1'] + '-' + @result['json']['id_2']
+elsif @result['primary_type'] == 'archival_object'
+  then  @result['json']['_composite_identifier']
+else ''
+end
+
+  @container = Array.new
+  @result.container_titles_and_uris.each do |item|
+      @container << item['title']
+    end
+  @container = @container.join('; ')
+
+
+  @container_admin = Array.new
+  @result['json']['instances'].each do |instance|
+    tc = instance['sub_container']['top_container']['_resolved']['display_string']
+    @container_admin << (tc || "")
+  end
+  @container_admin = @container_admin.join('; ')
+
+
+%>
+
+<%
+linkurl = base + '?URL=' + context + '&title=' + title + '&repo=' + repo + '&callno=' + callno + '&container=' + @container + '&container_admin=' + @container_admin
+%>
+
+<div class="suggest_correction">
+  <a class="btn btn-default btn-xs" href="<%= linkurl %>" target="_blank">
+     Suggest a Correction
+       <i class="fa fa-check-square" aria-hidden="true"></i>
+  </a>
+</div>

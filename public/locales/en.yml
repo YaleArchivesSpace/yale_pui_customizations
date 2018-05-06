@@ -15,3 +15,48 @@ en:
           <p>Each finding aid contains a link to request materials from the collections.
           <strong>Each repository has its own location, hours, and policies for providing access to its collections.</strong> Please consult the repository with questions about using the materials. Collections are non-circulating and must be used in the repository’s reading room. In many cases the collections are stored off-site and require advance notice for retrieval. Some finding aids contain digitized versions of all or parts of a collection, but in most cases viewing a collection in its entirety will require visiting the repository.</p>
         </div>
+    search_leader: Find what you're looking for
+    subject_intro: |
+        <div class="alert alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p class="well">Subject records are topics, places, and genres used to describe the context and content of archival materials. In Archives at Yale, users can view a subject record to see all of the collections relating to that topic, place, or genre. Subject records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress.</p>
+        </div>
+    agent_intro: |
+        <div class="alert alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p class="well">Name records describe the people, families, and organizations that create archival materials. In Archives at Yale, users can view name records to see all of the collections created by a person, family, or organization. Name records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress.</p>
+        </div>
+
+  actions:
+    collection_overview: Collection Overview
+    hierarch: Finding Aid View
+    numeric: Container List
+
+  search_results:
+    page_title: "Found %{count} results"
+    results_head: "Showing %{type}: %{start}–%{end} of %{total}"
+
+    filter:
+      identifier: Call Number
+
+  search_sorting:
+    identifier: Call Number
+
+  errors:
+    backend_down_message: Archives at Yale is currently experiencing technical difficulties. We apologise for the inconvenience. Please try again later.
+
+  internal_links:
+    collection: Navigate the collection
+    search_collection: Search within collection
+
+  cont_arr: Navigate the collection
+
+  bulk-date-leader: bulk
+  date-label: Dates
+
+
+  resource:
+    _public:
+      identifier: Call Number
+      related_accessions:
+        accessions: Unprocessed Records

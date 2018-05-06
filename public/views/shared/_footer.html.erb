@@ -1,0 +1,28 @@
+<%#
+<div class="container-fluid panel-footer">
+  <div class="row">
+     <div class="col-md-12">
+       <p class="footer-items"><a href="
+       <%= AppConfig[:frontend_proxy_url] >">Staff Interface</a>
+         | Visit <a href="http://archivesspace.org">ArchivesSpace.org</a>
+         | <%= ASConstants.VERSION >
+         | <% if AppConfig[:feedback_url] && !AppConfig[:feedback_url].blank? >
+         <a id='aspaceFeedbackLink' href='<%= AppConfig[:feedback_url]>' target='_blank'>Send Feedback or Report a Problem</a>
+         <% end ></p>
+     </div>
+  </div>
+</div>
+%>
+<footer class="footer">
+  <div class="container-fluid">
+   <div class="row">
+    <div id="footer-links">
+      <span class="YaleLogo"><a href="http://www.yale.edu" target="_blank">Yale</a></span>
+      <span><a href="http://status.library.yale.edu" target="_blank">System Status</a></span>
+      <span><a href="http://www.yale.edu/privacy.html" target="_blank">Privacy Policy</a></span>
+      <span><a href="https://usability.yale.edu/web-accessibility/accessibility-yale" target="_blank">Accessibility</a></span>
+      <span><a href="<%= app_prefix('/photos') %>" class="hashtag"><%= t('photos.link_label') %></a></span>
+    </div>
+   </div><!-- end row -->
+  </div><!-- end container fluid -->
+</footer>
