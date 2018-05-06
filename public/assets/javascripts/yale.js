@@ -2,7 +2,7 @@ function YaleSidebar($sidebar) {
     this.$sidebar = $sidebar;
 
     this.$row = $sidebar.closest('.row');
-    // this is crazy.  it should be changed in the core code to "find" based on a ID value.
+    // this is crazy.  it should be changed in the core code to "find" based on an ID value.
     this.$content_pane = this.$row.find('> .col-sm-8');
 
     if (this.$content_pane.length == 0) {
