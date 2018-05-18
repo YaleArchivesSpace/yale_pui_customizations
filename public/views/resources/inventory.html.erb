@@ -26,7 +26,7 @@
       <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
     <% end %>
   </div>
-  <div id="sidebar" class="col-sm-3 sidebar sidebar-container">
+  <div id="yalesidebar" class="col-sm-3 sidebar sidebar-container">
     <% unless @results.blank? || @results['total_hits'] == 0 %>
       <%= render partial: 'shared/facets' %>
     <% end %>
