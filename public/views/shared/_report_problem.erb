@@ -17,9 +17,11 @@ callno = @result.identifier
 @container = @container.join('; ')
 
 @container_admin = Array.new
-@result['json']['instances'].each do |instance|
-  tc = instance['sub_container']['top_container']['_resolved']['display_string']
-  @container_admin << (tc || "")
+  if @result['json']['instances']
+    @result['json']['instances'].each do |instance|
+    tc = instance['sub_container']['top_container']['_resolved']['display_string']
+    @container_admin << (tc || "")
+  end
 end
 @container_admin = @container_admin.join('; ')
 %>
