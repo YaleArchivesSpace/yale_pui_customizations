@@ -60,3 +60,10 @@ en:
       identifier: Call Number
       related_accessions:
         accessions: Unprocessed Records
+
+  enumerations:
+    archival_record_level:
+      file: Part of Collection
+
+  inherit:
+    file: Parent Record
