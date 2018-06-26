@@ -88,7 +88,16 @@ but since we don't do that anyway, i haven't yet added that filter.
 	    note_struct = result.note('scopecontent')
           end
 	  if !note_struct['note_text'].blank? %>
-          <div class="abstract single_note"><span class='inline-label'><%= note_struct['label'] %></span>
+          <div class="abstract single_note">
+            <span class='inline-label'>
+              <%# local bit of code to add a colon if the
+              note does NOT end with one %>
+              <% if note_struct['label'].end_with?(":") %>
+                <%= note_struct['label'] %>
+              <% else %>
+                <%= note_struct['label'] + ":" %>
+              <% end %>
+            </span>
            <% if note_struct['note_text'].length > 500 %>
              <% truncated_note = note_struct['note_text'][0..499] %>
              <% end_index = truncated_note.rindex(' ') || 499 %>

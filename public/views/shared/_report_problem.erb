@@ -7,7 +7,7 @@ the base URL (or consolidate the two forms into one).
 <%
 base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
 context = request.original_url
-title = @result['primary_type'] == 'digital_object' ? @result['json']['title'] : @result['json']['display_string'].to_s
+title = ['digital_object', 'resource'].include?(@result['primary_type']) ? @result['json']['title'].to_s : @result['json']['display_string'].to_s
 repo = @result['json']['repository']['_resolved']['name'].to_s
 callno = @result.identifier
 @container = Array.new

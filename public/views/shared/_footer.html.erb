@@ -17,9 +17,14 @@
   <div class="container-fluid">
    <div class="row">
     <div id="footer-links">
-      <span class="YaleLogo"><a href="http://www.yale.edu" target="_blank">Yale</a></span>
+      <span class="YaleLogo">
+        <a href="http://www.yale.edu" class="y-icons y-yale y-mark">
+	         <span class="element-invisible">Yale</span>
+         </a>
+      </span>
       <span><a href="http://status.library.yale.edu" target="_blank">System Status</a></span>
       <span><a href="http://www.yale.edu/privacy.html" target="_blank">Privacy Policy</a></span>
+      <span><a href="https://web.library.yale.edu/data-use" target="_blank">Data Use</a></span>
       <span><a href="https://usability.yale.edu/web-accessibility/accessibility-yale" target="_blank">Accessibility</a></span>
       <span><a href="<%= app_prefix('/photos') %>" class="hashtag"><%= t('photos.link_label') %></a></span>
     </div>
