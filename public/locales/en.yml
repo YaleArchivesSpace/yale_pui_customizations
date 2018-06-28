@@ -35,7 +35,8 @@ en:
   search_results:
     page_title: "Found %{count} results"
     results_head: "Showing %{type}: %{start}–%{end} of %{total}"
-
+    no_results: |
+        <p>No records found. Check out the <a href="/help" class="alert-link">Help</a> page for search strategies.</p>
     filter:
       identifier: Call Number
 
@@ -67,3 +68,9 @@ en:
 
   inherit:
     file: Parent Record
+
+  context_delimiter: ">"
+
+  plugins:
+    aeon_fulfillment:
+      request_button_label: Request
