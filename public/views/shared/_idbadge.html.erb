@@ -12,6 +12,17 @@ else
 end
 %>
 
+<%#mdc: a fix for another hack, to allow for folders to be requestable top
+containers inside of barcoded boxes.  see beinecke.edwards
+note: same hacky patch is also applied in _present_list.html.erb %>
+<%
+if result.container_summary_for_badge && result.container_summary_for_badge.include?("parent_barcode")
+  container_summary_for_badge_local = result.container_summary_for_badge.split(/, parent_barcode/, 2).first.sub! 'parent_box', 'Box'
+else
+  container_summary_for_badge_local = result.container_summary_for_badge
+end
+%>
+
 <%#mdc: adding this so that we can add different colors for archival objects %>
 <%
 if ['series', 'other'].include?(result.level)
@@ -22,16 +33,16 @@ end
 
 <%= (props.fetch(:full,false)? '<h1>' : '<h3>').html_safe %>
   <% if !props.fetch(:full,false) %>
-    <a class="record-title" href="<%= app_prefix(result.uri) %>">  <%== result.display_string %></a>
+    <a class="record-title" href="<%= app_prefix(result.uri) %>">  <%== result.display_string.gsub(/\$\w:\s/, '') %></a>
   <% else %>
-    <%== result.display_string %>
+    <%== result.display_string.gsub(/\$\w:\s/, '') %>
   <% end %>
 <%= (props.fetch(:full,false)? '</h1>' : '</h3>').html_safe %>
 
 
 <div class="badge-and-identifier">
   <div class="record-type-badge <%= 'series' if addclass == true %> <%= (result.primary_type.start_with?('agent') ? 'agent' : result.primary_type) %>">
-    <i class="<%= icon_for_type(result.primary_type) %>"></i>&#160;<%= badge_label %> <% if result.container_summary_for_badge %> &mdash; <%= result.container_summary_for_badge %><% end %>
+    <i class="<%= icon_for_type(result.primary_type) %>"></i>&#160;<%= badge_label %> <% if result.container_summary_for_badge %> &mdash; <%= container_summary_for_badge_local %><% end %>
   </div>
     <% comp_id = result.identifier %>
   <% unless comp_id.blank? || result.primary_type == 'digital_object' %>

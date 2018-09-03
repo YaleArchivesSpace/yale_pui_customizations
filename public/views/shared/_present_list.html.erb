@@ -24,7 +24,7 @@
      <li>
        <% if list_clss == 'subjects_list' && item['jsonmodel_type'].start_with?('agent_') %>
          <a href="<%= app_prefix(item['uri']) %>">
-           <%= item['title'] %>
+           <%= item['title'].gsub(/\$\w:\s/, '') %>
          </a>
          <% if item['_relator'] %>
            (<%= t("enumerations.linked_agent_archival_record_relators.#{item['_relator']}", :default => item['_relator'])  %>)
@@ -35,7 +35,13 @@
         <% unless item['uri'].blank? %>
          <a href="<%= app_prefix(item['uri']) %>">
         <% end %>
-        <%= item['title'] %>
+        <%# mdc: same hacky fix from _idbage.html.erb for those "parent_barcode" issues %>
+        <% if item['title'].include?("parent_barcode") %>
+          <%= item['title'].split(/, parent_barcode/, 2).first.sub! 'parent_box', 'Box' %>
+        <% else %>
+          <%= item['title'] %>
+        <% end %>
+
         <% unless item['uri'].blank? %>
          </a>
         <% end %>

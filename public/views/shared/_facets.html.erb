@@ -2,7 +2,7 @@
 
 <div class="filters">
  <% unless @filters.blank? && @search.filters_blank? %>
-    <h2><%= t('search_results.filtered_by')%> </h2> 
+    <h2><%= t('search_results.filtered_by')%> </h2>
        <ul>
         <% @search.get_filter_q_arr(@page_search).each do |f_q| %>
 	  <% unless f_q['v'].blank? %>
@@ -22,7 +22,7 @@
       </ul>
   <% end  %>
    <% @filters.each do |k,h|  %>
-    <li class="list-group-item"><span class="filter"><%= h['pt'] %>: <%= h['pv'] %>
+    <li class="list-group-item"><span class="filter"><%= h['pt'] %>: <%= h['pv'].gsub(/\$\w:\s/, '') %>
 <a href="<%= app_prefix(h['uri'])%>"
 title="<%= t('search_results.remove_filter') %> " class="delete_filter">X</a></li>
    <% end %>
