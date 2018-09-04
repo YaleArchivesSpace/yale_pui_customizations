@@ -62,10 +62,6 @@ en:
       related_accessions:
         accessions: Unprocessed Records
 
-  enumerations:
-    archival_record_level:
-      file: Part of Collection
-
   inherit:
     file: Parent Record
 
@@ -76,5 +72,7 @@ en:
       request_button_label: Request
 
   enumerations:
+    archival_record_level:
+      file: Part of Collection
     container_type:
       container: Box
