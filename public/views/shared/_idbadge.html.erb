@@ -41,8 +41,8 @@ end
 
 
 <div class="badge-and-identifier">
-  <div class="record-type-badge <%= 'series' if addclass == true %> <%= (result.primary_type.start_with?('agent') ? 'agent' : result.primary_type) %>">
-    <i class="<%= icon_for_type(result.primary_type) %>"></i>&#160;<%= badge_label %> <% if result.container_summary_for_badge %> &mdash; <%= container_summary_for_badge_local %><% end %>
+  <div class="record-type-badge <%= (result.primary_type.start_with?('agent') ? 'agent' : result.primary_type) %>">
+    <i class="<%= addclass == true ? 'yc yc-series' : icon_for_type(result.primary_type) %>"></i>&#160;<%= badge_label %> <% if result.container_summary_for_badge %> &mdash; <%= container_summary_for_badge_local %><% end %>
   </div>
     <% comp_id = result.identifier %>
   <% unless comp_id.blank? || result.primary_type == 'digital_object' %>

@@ -16,6 +16,7 @@ en:
           <strong>Each repository has its own location, hours, and policies for providing access to its collections.</strong> Please consult the repository with questions about using the materials. Collections are non-circulating and must be used in the repository’s reading room. In many cases the collections are stored off-site and require advance notice for retrieval. Some finding aids contain digitized versions of all or parts of a collection, but in most cases viewing a collection in its entirety will require visiting the repository.</p>
         </div>
     search_leader: Find what you're looking for
+    welcome_page_title: Home
     subject_intro: |
         <div class="alert alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
