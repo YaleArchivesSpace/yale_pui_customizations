@@ -30,7 +30,7 @@ title="<%= t('search_results.remove_filter') %> " class="delete_filter">X</a></l
  <% end %>
 </div>
 
-<% if @search[:dates_within] || @search[:text_within] %>
+<% if ['Subjects', 'Names'].include?(@results_type) && (@search[:dates_within] || @search[:text_within]) %>
 <h2><%= t('search_results.filter.head') %></h2>
  <div class="filter_more">
    <%= form_tag(app_prefix("#{@base_search}"), method: 'get', :class=> "form-horizontal") do %>
