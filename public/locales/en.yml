@@ -1,4 +1,5 @@
 en:
+  multiple_containers: "%{containers.length} Containers"
   brand:
     title: Archives at Yale
     title_link_text: Return to the Archives at Yale homepage
