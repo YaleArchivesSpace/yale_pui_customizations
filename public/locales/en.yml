@@ -68,6 +68,8 @@ en:
 
   context_delimiter: ">"
 
+  digital_object_link_text: "Click here to access online"
+
   plugins:
     aeon_fulfillment:
       request_button_label: Request
