@@ -8,8 +8,15 @@
         <div class="objectimage">
           <div class="panel panel-default">
             <a class="btn btn-default record-type-badge digital_object" style="width: 100%" href="<%= d_file['out'] %>" target="new" title="<%= t('digital_object._public.link')%>">
+
+              <%# -- being lazy, but the html snippet should be added to a helper file, along with a new CSS class
+              for this particular panel-title and panel-heading... but c'est la me %>
+              <div style="text-align:center;" class="panel-title">
+                <%= t('digital_object_link_text')%>
+              </div>
+
               <i class="fa fa-th fa-4x"></i><br/>
-              <div class="panel-heading">
+              <div class="panel-heading" style="text-align:center;">
                 <%= d_file['caption'].blank? ? "#{t('enumerations.instance_instance_type.digital_object')} #{d_file['material']}" : d_file['caption'].html_safe %>
               </div>
             </a>
@@ -19,9 +26,17 @@
         <div class="objectimage">
           <div class="panel panel-default">
             <a class="thumbnail" href="<%= d_file['out'] %>" target="new" title="<%= t('digital_object._public.link')%>">
+
+              <%# -- being lazy, but the html snippet should be added to a helper file, along with a new CSS class... but c'est la me %>
+              <% unless d_file['thumb'] == 'https://libweb.library.yale.edu/pui-assets/access_thumb.jpg' %>
+                <div style="text-align:center;" class="panel-title">
+                  <%= t('digital_object_link_text')%>
+                </div>
+              <% end %>
+
               <img src="<%= d_file['thumb'] %>" alt="<%= strip_mixed_content(d_file['caption'] || t('enumerations.instance_instance_type.digital_object')) %>" />
             </a>
-	          <div class="panel-heading">
+	          <div class="panel-heading" style="text-align:center;">
 	            <%= (d_file['caption'] || t('enumerations.instance_instance_type.digital_object')).html_safe %>
 	          </div>
           </div>
