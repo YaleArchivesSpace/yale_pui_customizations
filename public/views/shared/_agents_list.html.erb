@@ -11,7 +11,7 @@
   <ul class="present_list agents_list">
     <% relationships.reject{|v| v == 'above-the-scroll' }.each do |relationship| %>
       <% agent = relationship.fetch('_resolved') %>
-      <% relator = agent['relator'] ? I18n.t("enumerations.linked_agent_archival_record_relators.#{agent['relator']}", :default => agent['relator']) : nil %>
+      <% relator = relationship['relator'] ? I18n.t("enumerations.linked_agent_archival_record_relators.#{relationship['relator']}", :default => relationship['relator']) : nil %>
       <li>
         <% unless relationship['_inherited'].blank? %>
           <%= inheritance(relationship['_inherited']).html_safe %>
