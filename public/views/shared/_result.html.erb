@@ -86,10 +86,10 @@ end
       <% end %>
 
       <% note_struct = result.note('abstract')
-   if note_struct.blank?
-     note_struct = result.note('scopecontent')
+         if note_struct.blank?
+            note_struct = result.note('scopecontent')
          end
-   if !note_struct['note_text'].blank? %>
+         if !note_struct['note_text'].blank? %>
          <div class="abstract single_note">
            <span class='inline-label'>
              <%# local bit of code to add a colon if the
@@ -100,9 +100,12 @@ end
                <%= note_struct['label'] + ":" %>
              <% end %>
            </span>
-          <% if note_struct['note_text'].length > 500 %>
-            <% truncated_note = note_struct['note_text'][0..499] %>
-            <% end_index = truncated_note.rindex(' ') || 499 %>
+           <% unless note_struct['is_inherited'].blank? %>
+             <%= inheritance(note_struct['is_inherited']).html_safe %>
+           <% end %>
+          <% if note_struct['note_text'].length > AppConfig[:abstract_note_length] %>
+            <% truncated_note = note_struct['note_text'][0..AppConfig[:abstract_note_length]-1] %>
+            <% end_index = truncated_note.rindex(' ') || AppConfig[:abstract_note_length]-1 %>
             <%= strip_tags(truncated_note[0..end_index - 1]) + '...' %>
           <% else %>
       <%= note_struct['note_text'].html_safe %>
@@ -113,12 +116,12 @@ end
       <% r_uri = nil
          r_name = nil
          if result['json']['repository'] && result['json']['repository']['_resolved'] && (!result['json']['repository']['ref'].blank? || !result['json']['repository']['_resolved']['name'].blank?)
-           r_uri = result['json']['repository']['ref'] || ''
-           r_name = result['json']['repository']['_resolved']['name'] || ''
+            r_uri = result['json']['repository']['ref'] || ''
+            r_name = result['json']['repository']['_resolved']['name'] || ''
          elsif result['_resolved_repository'] && result['_resolved_repository']['json']
-          r_uri =  result['_resolved_repository']['json']['uri'] || ''
-                 r_name = result['_resolved_repository']['json']['name'] || ''
-         end
+            r_uri =  result['_resolved_repository']['json']['uri'] || ''
+            r_name = result['_resolved_repository']['json']['name'] || ''
+        end
       %>
    <% end %>
 
