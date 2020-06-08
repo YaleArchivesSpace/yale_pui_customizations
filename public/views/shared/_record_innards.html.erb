@@ -1,5 +1,5 @@
 <!-- Look for '_inherited' and '*_inherited' properties -->
-<% non_folder = %w(physloc summary langmaterial physdesc accessrestrict phystech altformavail userestrict acqinfo arrangement originalsloc relatedmaterial bioghist) %>
+<% non_folder = %w(summary physloc langmaterial physdesc accessrestrict phystech altformavail userestrict acqinfo arrangement originalsloc relatedmaterial bioghist) %>
 <% folder = %w(abstract otherfindaid custodhist appraisal accruals extent separatedmaterial note_bibliography materialspec inscription physfacet dimensions edition fileplan legalstatus odd note processinfo note_index) %>
 <div class="upper-record-details">
     <% over = @result.note('scopecontent') %>
@@ -9,10 +9,7 @@
 
     end %>
     <% unless over.blank? %>
-      <%= render partial: 'shared/single_note', locals: {:type => 'abstract', :note_struct => over}
-      #removed ", :notitle => true" after note_struct => over
-      %>
-
+      <%= render partial: 'shared/single_note', locals: {:type => 'abstract', :note_struct => over} %>
     <% end %>
 
     <% unless @result.dates.blank? %>
@@ -20,45 +17,42 @@
       <%= render partial: 'shared/dates', locals: {:dates => @result.dates} %>
     <% end %>
 
-    <%#mdc:  adding "above-the-scroll" to the mix to determine when to use
-    an h2 vs an h4 %>
     <% if @result.agents && Array(@result.agents['creator']).length > 0 %>
       <% a_direct_creator = @result.agents['creator'].reject{|r| r['_inherited']}.take(1) %>
       <% unless a_direct_creator.empty? %>
-        <% list = {'creator' => a_direct_creator.unshift('above-the-scroll')} %>
-        <%= render partial: 'shared/agents_list', locals: {:list => list} %>
+        <%= render partial: 'shared/agents_list', locals: {:list => {'creator' => a_direct_creator}} %>
       <% end %>
     <% end %>
 
     <% non_folder.each do |type| %>
-       <% note_struct =  @result.note(type) %>
+      <% (@result.notes[type] || []).each do |note_struct| %>
        <% unless note_struct['note_text'].blank? %>
-        <%= render partial: 'shared/single_note', locals: {:type => type, :note_struct => note_struct} %>
+        <%= render partial: 'shared/single_note', locals: {:type => type, :note_struct => note_struct}   %>
        <% end %>
-       <%#mdc: as you can see, lang code is not used here
-       i've added the following IF statement to translate the langcode.
-       Note: this should still be updated for inherited language codes, I believe. %>
-       <% if type == 'langmaterial' && @result['language'] && @result.note('langmaterial').blank? %>
-         <h2 class="smaller_gray"><%= t('resource._public.lang') %></h2>
-           <p>
-             <%= t('enumerations.language_iso639_2.' + @result['language'].downcase) %>
-           </p>
-       <% end %>
+      <% end %>
     <% end %>
 
     <% unless @result.extents.blank? %>
       <h2 class="smaller_gray"><%= t('resource._public.extent') %></h2>
        <% @result.extents.each do |ext| %>
         <p class="extent"><%= inheritance(ext['_inherited']).html_safe %>
-          <%= ext['display']%>
-        </p>
+	  <%= ext['display']%>
+	</p>
       <% end %>
     <% end %>
+
+    <% unless @result.notes.include?('langmaterial') || @result.lang_materials.blank? %>
+      <h2 class="smaller_gray"><%= t('resource._public.lang') %></h2>
+       <% @result.lang_materials.each do |lang_material| %>
+        <p class="language"><%= inheritance(lang_material['_inherited']).html_safe %>
+	  <%= t('enumerations.language_iso639_2.' + lang_material['language'])%>
+	</p>
+      <% end %>
+    <% end %>
+
     <% if @result.is_a?(Accession) && @result.inventory %>
-      <h2><%= t('accession._public.section.inventory') %></h2>
-      <p>
-        <%= @result.inventory %>
-      </p>
+      <h2 class="smaller_gray"><%= t('accession._public.section.inventory') %></h2>
+      <p><%= @result.inventory %></p>
     <% end %>
 
     <% ASUtils.find_local_directories('public/views/_upper_record_innards.html.erb').each do |template| %>
