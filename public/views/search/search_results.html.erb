@@ -89,7 +89,7 @@
          <a name="main" title="<%= t('internal_links.main') %>"></a>
          <div class="row">
            <div class="col-sm-8">
-             <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
+             <%= render partial: 'shared/pagination', locals: {:pager  => @pager, :pager_id => 'paging_bottom'}  %>
            </div>
          <%= render partial: 'shared/sorter' %>
          </div>
