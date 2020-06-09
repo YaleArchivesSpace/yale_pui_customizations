@@ -23,6 +23,7 @@
   <div class="col-sm-8">
     <%= render partial: 'shared/digital', locals: {:dig_objs => @dig} %>
     <%= render partial: 'shared/record_innards' %>
+    <%= render partial: 'shared/report_problem' %>
   </div>
   <div id="sidebar" class="col-sm-4 sidebar sidebar-container resizable-sidebar" <% unless @has_children %>style="display: none"<% end %>>
     <% if defined?(@filters) && defined?(@search) %>

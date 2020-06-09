@@ -20,6 +20,7 @@
     <%= render partial: 'shared/digital', locals: {:dig_objs => @dig} %>
 
     <%= render partial: 'shared/record_innards' %>
+    <%= render partial: 'shared/report_problem' %>
    </div>
 
    <% if !@result.instance_of?(DigitalObject) || @has_children %>
