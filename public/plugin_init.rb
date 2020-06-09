@@ -36,7 +36,6 @@ Rails.application.config.after_initialize do
     end
   end
 
-
   ArchivesSpaceClient.class_eval do
     # Override get_all_series to filter out series that are not the direct
     # descendent of a Resource record
