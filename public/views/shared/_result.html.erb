@@ -62,7 +62,7 @@ if result.primary_type.in?(['resource', 'archival_object']) && result['json']['d
        if date.has_key?('expression')
          date['expression']
        elsif date.has_key?('begin') && date.has_key?('end')
-         date['begin'] + "-" +date['end']
+         date['begin'] + "-" + date['end']
        elsif date.has_key?('begin')
          date['begin']
        elsif date.has_key?('end')
