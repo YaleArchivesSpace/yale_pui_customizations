@@ -723,7 +723,7 @@ div.suggest_correction {
 /*
 * Fix to make search result titles in the appropriate font
 */
-h3 {
+.recordrow > h3 {
 font-family: Mallory-Bold;
 font-weight: 500;
 }
@@ -927,18 +927,20 @@ ul.classifications_list ul.breadcrumb>li+li:after {
 }
 
 /* OUP: Repo Page ------------------------------------------------ */
-/* tighten up the contact display */
+/* tighten up the contact display
 .contact_info {
 font-size: 18px;
 }
+*/
 
 .website {
-font-size: 18px;
-padding: 10px 0px;
+/*font-size: 18px;*/
+padding: 10px 0;
 }
+
 .email {
 display: block;
-margin-top: 10px;
+/*margin-top: 10px;*/
 }
 
 .alert {
