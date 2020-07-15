@@ -1,4 +1,16 @@
-<meta name="robots" content="noindex, nofollow">
+<%= stylesheet_link_tag "#{@base_url}/assets/yale.css?_t=#{ASConstants.VERSION}" %>
+
+<% if AppConfig[:environment] == 'PROD' %>
+  <script type="text/javascript">
+    //<![CDATA[
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-T5NVZJC');
+    //]]>
+  </script>
+  <% else %>
+  <meta name="robots" content="noindex, nofollow">
+<% end %>
+
+
 <% if ( [ 'objects', 'resources' ].include?( controller.controller_name  ))  %>
 <!--  expand all, but only if the screen width is gte 768px  -->
 <script type="text/javascript" >
