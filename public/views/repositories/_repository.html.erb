@@ -1,29 +1,36 @@
-<% if !full %>
-<div class="recordrow">
-  <% end %>
-  <%= (full ? '<h1>' : '<h3>').html_safe %>
-    <% if !full %><a class="record-title" href="<%= app_prefix(result['uri']) %>"><% end %><%= result['name']%>
-      <% if !full %></a><% end %>
+<%# Notes:
+ - full: in the context of the repository show template and the record
+   repository accordion
+ - !full: in the context of a repository search result
+ - result: the repository hash
+%>
+<% if !full %><div class="recordrow"><% end %>
+
+<%# Yale override to only show title and badge on search results %>
+<% unless full %>
+  <h3>
+    <a class="record-title" href="<%= app_prefix(result['uri']) %>">
+      <%= result['name']%>
       <% if result.has_key?('image_url') %>
-      <%= link_to image_tag(result['image_url'], :alt => "#{t('repository._singular')}: #{result['name']}"), result['uri'], {:class => 'repository-logo'} %>
+        <%= link_to image_tag(result['image_url'], :alt => "#{t('repository._singular')}: #{result['name']}"), result['uri'], {:class => 'repository-logo'} %>
       <% end %>
-      <%= (full ? '</h1>' : '</h3>').html_safe %>
-
-      <div class="badge-and-identifier">
-        <div class="record-type-badge repository">
-          <i class="fa fa-home"></i>&#160;<%= t('repository._singular') %>
-        </div>
-
-        <div class="<%= (full ? 'clear' : 'recordsummary') %>">
-          <%# we've removed the Parent Institution information from here,
-          since all of the repos are part of Yale %>
-          <% if full %>
-          <%= render partial: 'repositories/full_repo', locals: {:info => result['repo_info'], :url => result['url']} %>
-          <% else %>
-          <div><strong>Number of <%= t('resource._plural') %>:</strong> <%= result['count'] %></div>
-          <% end %>
-        </div>
-      </div>
-      <% if !full %>
+    </a>
+  </h3>
+  <div class="badge-and-identifier">
+    <div class="record-type-badge repository">
+      <i class="fa fa-home"></i>&#160;<%= t('repository._singular') %>
     </div>
-    <% end %>
+  </div>
+<% end %>
+
+<div class="<%= (full ? 'clear' : 'recordsummary') %>">
+  <%# we've removed the Parent Institution information from here,
+          since all of the repos are part of Yale %>
+  <% if full %>
+    <%= render partial: 'repositories/full_repo', locals: {:info => result['repo_info'], :url => result['url']} %>
+  <% else %>
+    <div><strong>Number of <%= t('resource._plural') %>:</strong> <%= result['count'] %></div>
+  <% end %>
+</div>
+
+<% if !full %></div><% end %>

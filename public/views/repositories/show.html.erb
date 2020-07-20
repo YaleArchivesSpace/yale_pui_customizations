@@ -1,13 +1,19 @@
 <div id="main-content" class="repositories">
-
-  <div class="abstract">
-    <%= render partial: 'repositories/repository', locals: {:result => @result,  :full => true} %>
+  <h1>
+    <%= @result['name']%>
+    <% if @result.has_key?('image_url') %>
+      <%= link_to image_tag(@result['image_url'], :alt => "#{t('repository._singular')}: #{@result['name']}"), @result['uri'], {:class => 'repository-logo'} %>
+    <% end %>
+  </h1>
+  <div class="badge-and-identifier">
+    <div class="record-type-badge repository">
+      <i class="fa fa-home"></i>&#160;<%= t('repository._singular') %>
+    </div>
   </div>
-
-<hr/>
 
   <%= render partial: 'shared/search', locals: {
    :search_url => "#{@result['uri']}/search",
+   :header_size => 2,
    :title => t('repository._singular'),
    :limit_options =>  [["#{t('actions.search')} #{t('search-limits.all')}",''],
             [t('search-limit', :limit => t('search-limits.resources')),'resource']],
@@ -29,6 +35,10 @@
 	<% end %>
       </ul>
     </div>
+  </div>
 
+  <div class="abstract">
+    <h2><%= t('repository.details') %></h2>
+    <%= render partial: 'repositories/repository', locals: {:result => @result,  :full => true} %>
   </div>
 </div>
