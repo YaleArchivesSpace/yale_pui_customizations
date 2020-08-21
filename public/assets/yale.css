@@ -991,22 +991,22 @@ color: #040505 !important;
 
 /* mdc: new addition for temp solution to emergency banner */
 #emergency-top-banner {
-  background-color: #c5000f;
-  border-top: 10px solid #6c1003;
+  background-color: #ffefc3;
   padding: 0 0 15px 50px;
   margin-bottom: 0;
 }
 #emergency-top-banner a {
     text-decoration: underline;
+    font-style: bold;
 }
 #emergency-top-banner * {
-      color: #fff;
+      color: #0f0f0f;
 }
 #emergency-top-banner h2 {
       margin-top: 12px;
 }
 #emergency-top-banner span {
-      color: #fff;
+      color: #414141;
       font-size: 30px;
 }
 #emergency-top-banner button {
