@@ -496,6 +496,12 @@ is Responsive, as well*/
  }
 }
 
+/*mdc:  new changes for what were formerly horziontal finding aid lists.
+not just a regular definiton list, with a bit of padding for the dd elements */
+.dl-yale dd {
+  margin: 0 0 8px 0;
+}
+
 /*mdc: temp change to shrink header a bit */
 #header > .row {
   height: 4.7rem;
