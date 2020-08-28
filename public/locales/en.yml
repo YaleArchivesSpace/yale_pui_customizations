@@ -41,6 +41,13 @@ en:
         <p>No records found. Check out the <a href="/help" class="alert-link">Help</a> page for search strategies.</p>
     filter:
       identifier: Call Number
+      onsite_status_u_sstr: Storage location
+
+  yale_onsite_locations:
+    onsite_status_u_sstr:
+      onsite: Stored onsite
+      offsite: Stored offsite
+      mixed: Stored onsite and offsite
 
   search_sorting:
     identifier: Call Number
