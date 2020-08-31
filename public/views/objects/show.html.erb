@@ -1,23 +1,19 @@
 <a name="main" title="<%= t('internal_links.main') %>"></a>
-
-<div class="row">
-    <%= render partial: 'shared/breadcrumbs' %>
-</div>
-
 <div id="main-content" class="row objects">
   <div class="row" id="info_row">
-    <div class="information col-sm-6">
+    <div class="information col-sm-7">
       <%= render partial: 'shared/idbadge', locals: {:result => @result, :props => { :full => true} } %>
     </div>
-    <div class="page_actions col-sm-6 right">
+    <div class="page_actions col-sm-5 right">
     <%= render partial: 'shared/page_actions', locals: {:record => @result, :title => @result.display_string, :url => request.fullpath, :cite => @result.cite } %>
     </div>
   </div>
 
+   <%= render partial: 'shared/breadcrumbs' %>
 
   <div class="row" id="notes_row">
-    <!-- mdc: update sizing. 9,3  to 8,4 -->
-   <div class="col-sm-8" id="center-page">
+    <%# mdc: changing 9, 3 to 8,4 for layout %>
+   <div class="col-sm-8">
     <% if  defined?(comp_id) && !comp_id && !@result['json']['ref_id'].blank? %>
       <span class='ref_id'>[<%=  t('archival_object._public.header.ref_id') %>: <%= @result['json']['ref_id'] %>]</span>
     <% end %>
@@ -36,45 +32,7 @@
           heading_text = t('cont_arr')
         end
       %>
-
-      <% unless @result.kind_of?(DigitalObject) %>
-	        <a name="search" title="<%= t('internal_links.search_collection') %>"></a>
-        <div class="search">
-
-            <%= form_tag(app_prefix("#{@result['resource']}/search"), method: 'get', :class=> "form-horizontal") do %>
-            <div class="form-group">
-                <%= label_tag(:filter_q0,  "#{t('actions.search_in', :type=> t('resource._singular'))}", :class => 'sr-only') %>
-
-                <%= text_field_tag('filter_q[]', nil,:id => 'filter_q0', :placeholder =>  "#{t('actions.search_in', :type => t('resource._singular'))}", :class=> "form-control") %>
-            </div>
-
-<%# need to add this to a shared view,
-and call it from resource and objects %>
-            <div class="form-group">
-                <%= hidden_field_tag('op[]','') %>
-                <%= hidden_field_tag('field[]','') %>
-                <%= hidden_field_tag('limit','') %>
-                <%= hidden_field_tag('q[]','*') %>
-                <div class="col-md-6 year_from">
-              	   <%= label_tag(:from_year0, "#{t('search_results.filter.from_year')}", :class => 'sr-only') %>
-              	   <%= text_field_tag('from_year[]', nil, :id=>'from_year0', :size => 4,:maxlength => 4, :placeholder => t('search_results.filter.from_year'),
-                          :class=>"form-control") %>
-                </div>
-
-                <div class="col-md-6 year_to">
-                    <%= label_tag(:to_year0, "#{t('search_results.filter.to_year')}", :class=> 'sr-only') %>
-                    <%= text_field_tag('to_year[]', nil, :size => 4, :maxlength => 4, :class=> "form-control", :id => 'to_year0',
-                         :placeholder => t('search_results.filter.to_year')) %>
-                </div>
-            </div>
-            <%= submit_tag(t('search-button.label'), :class=>'btn btn-primary btn-sm') %>
-            <% end %>
-        </div>
-      <% end %>
-
-
-
-
+      <%= render partial: 'shared/search_collection_form', :locals => {:resource_uri => @result.resource_uri, :action_text => "#{t('actions.search_in', :type => t('resource._singular'))}"} %>
       <%= render partial: 'shared/children_tree', :locals => {:heading_text => heading_text, :root_node_uri => @result.root_node_uri, :current_node_uri => @result.uri} %>
     </div>
    <% end %>

@@ -1,0 +1,1065 @@
+/*
+ * Initial CSS build:  2018-03-16 Yale University Library
+ */
+
+/*
+ * The following CSS is used to customize the look-and-feel of the ArchivesSpace Public
+ * User Interface into the "Archives at Yale" product.
+ *
+ * The Archives at Yale look-and-feel was reviewed and approved by the Yale Office of the
+ * Printer and closely tracks the look-and-feel of Yale.edu.
+ *
+ * The CSS was finalized on 2019-01-02
+ */
+
+/*
+ * =============================================================================== font definitions
+ *
+ * This section pulls in all of the custom fonts required by the interface.  The font
+ * files live on a VirtualHost called "libweb" that lives on a YUL server named
+ * "Sapphire".
+ */
+
+ /*
+  * YaleDesign:  This font was developed at Yale University and is the official
+  * serif font of Yale's branding.
+  */
+@font-face {
+  font-family: 'YaleDesign-Medium';
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-medium-webfont.eot");
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-medium-webfont.eot?#iefix") format("embedded-opentype"),
+       url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-medium-webfont.ttf") format("truetype"),
+       url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-medium-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'YaleDesign-Bold';
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bold-webfont.eot");
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bold-webfont.eot?#iefix") format("embedded-opentype"),
+        url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bold-webfont.ttf") format("truetype"),
+        url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'YaleDesign-Italic';
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-italic-webfont.eot");
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-italic-webfont.eot?#iefix") format("embedded-opentype"), url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-italic-webfont.ttf") format("truetype"), url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-italic-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: 'YaleDesign-Bold-Italic';
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bolditalic-webfont.eot");
+  src: url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bolditalic-webfont.eot?#iefix") format("embedded-opentype"), url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bolditalic-webfont.ttf") format("truetype"), url("//libweb.library.yale.edu/fonts/YaleDesign/yaledesign-bolditalic-webfont.woff") format("woff");
+}
+
+ /*
+  * Mallory:  Mallory was chosen in 2018 as the official sans-serif font for
+  * Yale University web pages.
+  */
+@font-face {
+    font-family: 'Mallory-Light';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-Light.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-Light.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-LightItalic';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-LightItalic.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-LightItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-Book';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-Book.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-Book.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-BookItalic';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-BookItalic.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-BookItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-Bold';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-Bold.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-Bold.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-BoldItalic';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-BoldItalic.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-BoldItalic.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-Medium';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-Medium.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-Medium.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Mallory-MediumItalic';
+    src:    url("//libweb.library.yale.edu/fonts/mallory/Mallory-MediumItalic.woff") format("woff"),
+            url("//libweb.library.yale.edu/fonts/mallory/Mallory-MediumItalic.woff2") format("woff2");
+}
+
+ /*
+  * ycustom:  This is a custom-built font created by YUL.  It contains icons designed by
+  * Eve Neiger specifically for use in Archives at Yale.  These were developed as neither
+  * FontAwesome nor Modern Pictograms contained fonts appropriate for "Series" or "Collection."
+  */
+@font-face {
+  font-family: 'ycustom';
+    src:     url("//libweb.library.yale.edu/fonts/ycustom/ycustom.eot") format("embedded-opentype"),
+             url("//libweb.library.yale.edu/fonts/ycustom/ycustom.svg") format("svg"),
+             url("//libweb.library.yale.edu/fonts/ycustom/ycustom.woff") format("woff"),
+	     url("//libweb.library.yale.edu/fonts/ycustom/ycustom.ttf") format("truetype");
+}
+
+
+/*
+ * ============================================================================ base element styles
+ *
+ * This section defines the basic styles (fonts, colors) for HTML elements.
+ */
+
+body {
+  font-family: 'Mallory-Book';
+  background-color: #ffffff;
+}
+
+a {
+  color: #0053a8;
+}
+
+#header {
+  background-color: #00356b;
+}
+
+/* !important needed to override an explicit !important in style.css line 9 */
+#header > div.row {
+  border: 0px !important;
+}
+
+div.h1 {
+  /* mdc: removing this!
+  margin-top: 10px;
+  */
+  /* adding this for the homepage */
+  font-family: 'YaleDesign-Medium';
+  font-weight: 500;
+  color: #ffffff;
+  /* adding the font-size back */
+  font-size: 2.5em;
+}
+
+div.h1 > a,
+div.h1 > a:hover {
+  font-family: 'YaleDesign-Medium';
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+nav.navbar {
+  border: 0px;
+}
+
+/*
+  * !important required to override an applicationxxxxx.css (autogen)
+  * There is no !important directive in this file.
+  */
+.top-bar {
+  background-color: #000000 !important;
+  border: 0px;
+}
+
+/*
+  * !important required to override color in applicationxxxxx.css (autogen)
+  * There is no !important directive in this file for color.
+  * The font-size cannot be displayed as there is an !important
+  * directive in the applicationxxxxx.css file.
+  */
+ul.navbar-nav > li > a,
+ul.navbar-nav > li > a:hover {
+  font-family: 'Mallory-Book';
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+ul.navbar-nav > li > a:hover {
+  color: #63aaff !important;
+  transition-duration: 0.3s;
+}
+
+h1 {
+  font-family: 'Mallory-medium';
+  color: #555;
+  font-size: 1.75em;
+  font-weight: 500;
+}
+
+h2 {
+  font-family: 'Mallory-Medium';
+  font-weight: 500;
+  font-size: 1.5em;
+  color: #00356b;
+}
+
+h3 {
+  font-family: 'Mallory-Medium';
+  font-weight: 500;
+  color: #00356b;
+}
+
+h4, h2.smaller_gray {
+  font-family: 'Mallory-Medium';
+  font-weight: 500;
+  color: inherit;
+  font-size: 1.2em;
+}
+
+
+span.inline-label {
+  font-family: 'Mallory-Medium';
+}
+
+.btn-dark {
+  background-color: #00356b;
+  font-size: 1.2em;
+  font-family: 'Mallory-Medium';
+}
+
+div.profile {
+  color: #ffffff;
+  font-family: 'YaleDesign-Medium';
+  font-size: 30px;
+  font-weight: 500;
+  vertical-align: middle;
+  margin-top: 0px !important;
+  padding: 10px 0px 10px 15px;
+}
+
+/*
+ * Float the breadcrumbs to the top of the page.
+ * This should absolutely be changed in code as this
+ * is a total hack.
+ MDC: Need to come up with another solution to move the breadcrumbs, if desired.
+ The proof-of-concept method has negative impacts elsewhere in the site.
+ */
+ /* for now, i'm just adding some spacing before the breadcrumbs */
+div#info_row {
+  margin-bottom:1em;
+}
+
+
+
+/* test for pointer breadcrumbs
+a few updated by mdc.... adding color and padding here,
+since the classification breadcrumbs don't always have an anchor links
+*/
+nav ul.breadcrumb li {
+  height: 30px;
+  position: relative;
+  background: #00356d;
+  margin-right: 12px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #ffffff;
+  padding: 5px 5px 0px 20px;
+}
+nav ul.breadcrumb li:before {
+  content: "" !important;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 15px solid white;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+nav ul.breadcrumb li:after {
+  content: "" !important;
+  position: absolute;
+  right: -15px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 15px solid #00356d;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+/* This removes the arrow at the left for the highest level breadcrumb */
+nav ul.breadcrumb li:first-child:before {
+  display: none
+}
+
+/*mdc: removing the background color from the default
+stylesheet */
+nav .breadcrumb {
+  background-color: transparent;
+  border: 1px solid #f5f5f5;
+}
+
+/*mdc: need one more fix for classificiton pages.
+can have a single li, but no Anchor.  in that case, we need to keep the font black.
+*/
+
+
+/* mdc: added :not(:only-child) for searching-within-collection pages */
+nav ul.breadcrumb li:last-child:not(:only-child),
+nav ul.breadcrumb li:last-child:before,
+nav ul.breadcrumb li:last-child:after {
+  background-color: unset;
+  border: unset;
+  padding: unset;
+  margin: unset;
+  padding: 2px 5px;
+  font-family: 'Mallory-Book';
+  color: #000000;
+  content: '' !important;
+}
+
+nav ul.breadcrumb li a {
+  position: relative;
+  display: block;
+  color: #ffffff;
+}
+
+nav ul.breadcrumb li:first-child a{
+  padding-left: 0px;
+  margin-left: -4px;
+}
+
+/* skw:  We overrode all <a> tags to Mallory-Medium.
+ * Breadcrumbs shouldn't be in that font.
+ */
+nav ul.breadcrumb li a {
+  font-family: Mallory-Light;
+}
+
+.record-type-badge {
+  font-family: Mallory-Bold;
+  font-weight: 500;
+}
+
+
+/* footer stuff, first pass (copied from FindIt) */
+
+.footer {
+    padding: .5em 0 .5em 0;
+    width: 100%;
+    height: 10%;
+    background-color: #01346B
+}
+
+#footer-links {
+    float: left;
+    margin-left: 35px;
+}
+
+#footer-links a {
+    color: #fff;
+    display: inline-block;
+    list-style-type: disc;
+    padding: 0.15em 0.15em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+    border-radius: 1em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 5px;
+    margin-right: 10px
+}
+
+#footer-links a:hover {
+    background-color: #014d9e;
+    border-bottom: none;
+    padding: 0.15em 0.15em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+    border-radius: 1em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 5px;
+    text-decoration: none;
+    margin-right: 10px
+}
+
+#footer-links span {
+    /*border-right: solid 1px #014d9e;*/
+    margin-right: 5px
+}
+
+footer.footer {
+    background-color: #00356b;
+    color: #bbbbbb;
+    margin-top: 3em;
+}
+
+footer.footer .links {
+    padding-top: 20px;
+}
+
+footer.footer .links a,
+footer.footer .links a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+span.YaleLogo a:hover {
+    padding: 5px
+}
+
+
+.sm-icons {
+    display: inline-block;
+    float: right;
+    margin: 1.5em 1em 0 0
+}
+
+.sm-icons a {
+    color: #fff;
+    display: inline-block;
+    list-style-type: disc;
+    padding: 0.35em 0.4em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+    border-radius: 0.5em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 5px;
+    margin-right: 5px
+}
+
+.sm-icons a:hover {
+    background-color: #014d9e;
+    border-bottom: none;
+    padding: 0.35em 0.4em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    -ms-border-radius: 0.5em;
+    -o-border-radius: 0.5em;
+    border-radius: 0.5em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 5px;
+    text-decoration: none;
+    margin-right: 5px
+}
+
+.sm-icons i {
+    font-size: 2em
+}
+
+.YaleLogo {
+    font-family: 'YaleDesign-Medium';
+    font-size: 29px;
+    line-height: 30px
+}
+
+.YaleLogo a {
+    color: #fff;
+    margin-right: 5px
+}
+
+/* mdc: bug fixes for Definition List layout
+should update so that this update
+is Responsive, as well*/
+/* add more width so there's no truncation */
+
+/* skw: setting the width to "auto" should do the trick, so I did that. */
+  .dl-horizontal dt {
+    width: auto;
+  }
+/* add more space between the dt and dd */
+
+/* skw -- I took this out because we need to align the labels with the left
+ * instead of the right.*/
+ /* mdc -- i put this back in, but updated it for large screens only.
+ without the margin (set at 180 in the default stylesheets), the long DLs in our custom font size have no space before the DD
+ e.g. "Language of descriptionEnglish".   instead of "Language of description   English"
+*/
+@media (min-width: 768px) {
+ .dl-horizontal dd {
+   margin-left: 220px;
+ }
+}
+
+/*mdc:  new changes for what were formerly horziontal finding aid lists.
+not just a regular definiton list, with a bit of padding for the dd elements */
+.dl-yale dd {
+  margin: 0 0 8px 0;
+}
+
+/*mdc: temp change to shrink header a bit */
+#header > .row {
+  height: 4.7rem;
+}
+
+/*mdc: temp fix for font override */
+.record-type-badge {
+  font-family: "Mallory-Medium";
+}
+
+/*mdc: i just can't stand those rounded pills no more */
+/* line 109 aspace.scss */
+.tabbing.nav-pills > li:first-child a {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.tabbing.nav-pills > li:last-child a {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* line 101, aspace.scss */
+.tabbing.nav-pills > li > a {
+  margin-left: 0px;
+}
+
+/* mdc: facet to the rights */
+.pull-right {
+  float:right;
+}
+
+/*mdc: more changes, now for the new sidebar stuff */
+
+@media (min-width: 992px) {
+  /* line 855, aspace.scss */
+  #sidebar.resizable-sidebar {
+    position: relative;
+    padding-left: 35px;
+  }
+  /* line 859, aspace.scss */
+  #sidebar.resizable-sidebar .resizable-sidebar-handle {
+    background-color: #f9f9f9;
+    position: absolute;
+    height: 100%;
+    width: 25px;
+    top: 0;
+    left: 0;
+    cursor: ew-resize;
+    background-image: url(/assets/sidebar_drag_handle.png);
+    background-repeat: repeat-y;
+    background-position: top;
+  }
+}
+/* line 7, largetree.scss */
+.largetree-container {
+  background-color: transparent;
+}
+.largetree-container tr td {
+  border-bottom: 1px solid #ddd;
+}
+
+/*mdc: uncomment the next 3 declarations for a gray background
+for the current section */
+/* line 125, largetree.scss */
+.largetree-container tr.current {
+ /*outline: 1px solid #978d85; */
+}
+/* line 128, largetree.scss */
+.largetree-container tr.current td {
+/* background-color: #4a4a4a;*/
+}
+.largetree-container tr.current td a {
+  /*color: #fff;*/
+}
+
+
+/* line 133, largetree.scss */
+.largetree-container .indentor {
+  background-color: #f9f9f9;
+}
+/* line 143, largetree.scss */
+.largetree-container table.root tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+/* line 146, largetree.scss */
+.largetree-container table.root tbody tr:first-child {
+     background-color: transparent
+}
+
+/*mdc: more changes, just because the non-yale blues are bothering me now */
+/* line 101, archivesspace/aspace.scss */
+.tabbing.nav-pills > li > a {
+  background-color: #286dc0;
+}
+
+/*mdc: infinite scroll page stuff (just for testing/finding purposes) */
+/*
+div.infinite-record-scrollbar {
+  background-color: #ddd;
+  margin-left: 20px;
+}
+*/
+
+/* mdc: just because the default gray background is bothering me */
+/* line 483, aspace.scss */
+.searchstatement {
+  background-color: transparent;
+}
+
+div.sm-icons a.hashtag {
+   vertical-align: middle;
+   display:inline-block;
+   height: 3em;
+}
+
+div.sm-icons a.hashtag:hover {
+    background-color: transparent;
+    color: #63aaff;
+    margin-right: 5px
+}
+
+/*mdc: css dropdown stuff for Repositories */
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*needed to keep accessible*/
+ul.navbar-nav > li.dropdown > a.dropdown-toggle:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+/*mdc: more spacing above the repo badges */
+#whats-in-container {
+  margin-top: 2.25rem;
+}
+div.contact_info {
+  margin-bottom:1.75rem;
+}
+
+/*mdc: link color is virtually impossible to meet
+should we underline all links? */
+a {
+  /*
+  text-decoration: underline;
+  color: #286dc0;
+  */
+  /*
+   * skw:  Reset this from Mallory-Light/700 to a more
+   * typeographically appropriate Mallory-Medium/500
+this causes problems in quite a few places (e.g. page action buttons), so I'm commmenting
+it out for now (mdc).
+  font-family: Mallory-Medium;
+       */
+  font-weight: 500;
+}
+
+
+/* changing all record type badges to a dark, dark grey */
+/* mdc: updating this, since it needs to hit span elements, as well */
+  [class^="record-type-badge"], [class*=" record-type-badge"] {
+  color: #00171f !important;
+  border-color: #00171f !important;
+}
+
+.fa-yale-accession {
+      position: relative;
+  }
+
+  .fa-yale-accession:before {
+        content: "\f0ad";
+        font-size: .6em;
+        position: absolute;
+        transform: rotate(270deg);
+        left: 2.5px;
+        top: 5px;
+    }
+
+.fa-yale-accession:after {
+      content: "\f016";
+      font-size: 1.2em;
+      left: 0;
+  }
+
+.series > .fa-file-o:before {
+      content: "\f1b2";
+}
+
+/* same for buttons */
+button.digital_object, button.classification, button.repository, button.accession
+, button.resource, button.subject, button.agent {
+  color: #00171f;
+}
+
+/* line 25, archivesspace/record-type-badge.scss
+adding a new color for archival objects that are a "series"
+oi.
+keeping this here since we might need to add a new icon for series.
+.record-type-badge.archival_object.series {
+  color: #0033cc;
+  border-color: #0033cc
+}
+*/
+
+/* stuff for suggestion_correction section */
+div.suggest_correction {
+  margin: 2em 0 1em 0;
+  /*border?*/
+  /* skw:  this doesn't need a border as "buttons" usually get one.
+   * I'm eliminating it later, though, since it should look like a link
+   * and not a button
+   */
+  padding: 15px 0;
+}
+
+/*
+* Fix to make search result titles in the appropriate font
+*/
+.recordrow > h3 {
+font-family: Mallory-Bold;
+font-weight: 500;
+}
+
+/* OUP:  Search Results ------------------------------------------------*/
+
+/* Modify results search box:
+* - Align placeholder test with all other text in the left column.
+* - Align *Search* button text with the other text in the left column.
+*/
+.form-horizontal {
+  position: relative;
+
+}
+.form-horizontal .form-group,
+.form-horizontal {
+margin-left: 0px !important;
+margin-right: 0px !important;
+}
+
+/*
+* Match _Filter Results_ vertical alignment with paging labels,
+* *Relevance* pull-down, and *Sort* button label
+*/
+h2 {
+padding-top: 3px;
+}
+
+/* Modify search result description blocks:
+* - Drop Call Number to its own line (this also aligns the icon)
+*/
+.badge-and-identifier .record-type-badge {
+  float: none;
+  padding: 0px;
+}
+.identifier {
+  float: none;
+  margin-left: 0px !important;
+  padding: 1em 0 0 0 !important;
+}
+
+/* - Insert 1em padding on top of all description sections.
+*/
+.recordsummary > div {
+  padding-top: 1em;
+}
+
+/* - Bold all labels (this also sets "strong" tags appropriately
+updated since core looks to have "render-bold" and "bold" outputs.
+need to verify and see what happens when this formatting is applied in h1 elements and elsewhere.
+*/
+strong,
+span.inline-label,
+span.bold,
+.identifier span.id-label,
+.component {
+  font-family: Mallory-Bold;
+  font-weight: normal;
+}
+
+/* OUP:  Sort Display --------------------------------------------------------- */
+
+/*
+* Match *Relevance* drop-down to results paging size
+*/
+select#sort {
+font-size: 14px;
+padding: 6px 12px 8px;
+}
+
+/*
+Match *Sort* button to size of drop-down/paging size
+note:
+the -2px declaration above was causing issues elsewhere
+, as was the padding.  let's get rid of all this and address it in a more targetted fashion
+last question:  do we want smaller buttons in the single-scroll view, or is our 14px default okay?
+--mdc*/
+
+.btn {
+font-size: 14px;
+white-space: normal;
+/*
+position: relative;
+top: -2px !important;
+padding-bottom: 6px;
+*/
+}
+/* mdc:  this is a more targetted way to deal with the *Sort* button */
+.sorter {
+  padding-bottom: 6px;
+}
+/* mdc: and since we've got larger buttons, let's add a little space before the *Refine Search* section when visible */
+#refineSearchPanel {
+  margin-top: 1.5em;
+}
+
+/*
+* Flush *New Search* and *Refine Search* buttons right
+The top padding that was originally added to our local CSS introduced two new problems:
+  1) played havoc with the request buttons in the single-scroll views
+  2) ruined the layout of the the refine search section, once someone clicked on the *Refine Search* button.
+The following fixes both issues (and precisely lines up the buttons).
+-- mdc. */
+div.searchstatement .btn-group {
+  left: 15px;
+}
+
+/* OUP:  Collection/Sub-collection page alignments ----------------------- */
+.subnote {
+padding-left: 0px;
+}
+
+/*
+* Button and accordion alignment
+*/
+.acc_button {
+font-family: 'Mallory-Book';
+font-weight: 500;
+margin-bottom: 0.5em;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+.present_list.top_containers {
+padding-left: 0px;
+list-style-type: none;
+}
+
+
+/* new for custom icons */
+[class^="yc-"], [class*=" yc-"] {
+  font-family: 'ycustom' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.yc-4x {font-size: 4em;}
+
+.yc-series:before {
+  content: "\e901";
+}
+.yc-collection:before {
+  content: "\e900";
+}
+
+/*
+* Suggest a correction modifications
+*/
+.suggest_correction button {
+border: 0px;
+padding: 0px;
+color: #666666;
+}
+.suggest_correction button:hover {
+border: 0px;
+padding: 0px;
+color: #007eaf;
+background: none;
+text-decoration: underline;
+}
+
+/*
+* Correct the "Classifications" accordion breadcrumbs.
+* These had lumped in with the nav breadcrumbs and created havoc.
+* We corrected this by specifying the fancy breadcrumbs for the
+* nav .breadcrub only.  Now we have to restyle the ones in the
+* accordion so they don't look terrible.
+*/
+ul.classifications_list {
+ list-style-type: none;
+ list-style: none;
+ padding: 0px;
+}
+
+ul.classifications_list ul.breadcrumb {
+list-style-type: disc;
+}
+
+ul.classifications_list ul.breadcrumb>li {
+display: list-item;
+}
+
+ul.classifications_list ul.breadcrumb>li+li:before,
+ul.classifications_list ul.breadcrumb>li+li:after {
+ content: '' !important;
+ padding: 0px;
+}
+
+/* This helps out the bullets under the "Finding aid and Administrative Information"
+* heading.
+*/
+.panel-body ul {
+ margin-left: 17px;
+ padding: 0px;
+}
+
+/* OUP: Repo Page ------------------------------------------------ */
+/* tighten up the contact display
+.contact_info {
+font-size: 18px;
+}
+*/
+
+.website {
+/*font-size: 18px;*/
+padding: 10px 0;
+}
+
+.email {
+display: block;
+/*margin-top: 10px;*/
+}
+
+.alert {
+padding-right: 0;
+margin-left: -6px
+}
+
+.alert .well {
+width: 75%;
+float: left;
+margin-left: 25%;
+}
+
+/*
+changes for changes to accordion section (mdc), now that i've made the entire div a link
+please make better :)
+*/
+.panel-default>.panel-heading>.accordion-toggle {
+color: #333333;
+}
+
+.panel-default>.panel-heading>.accordion-toggle:hover {
+color: #007eaf;
+text-decoration: none;
+}
+
+/*
+mdc:
+i would like to change this behavior in the model or in sass,
+but for now i'm just overriding the Alert styling here
+to have the same styling;
+and i'm sure there's a more elegant way to do this,
+but i ran into issues when trying to use the "starts with" selector for alert- on the class names.
+*/
+
+.alert-success, .alert-danger, .alert-warning, .alert-info {
+color: #1b1e21 !important;
+background-color: #f8f8f8 !important;
+border-color: #c6c8ca !important;
+}
+
+.alert-danger .alert-link,
+.alert-success .alert-link,
+.alert-warning .alert-link,
+.alert-info .alert-link {
+color: #040505 !important;
+}
+
+/* mdc: new addition for temp solution to emergency banner */
+#emergency-top-banner {
+  background-color: #ffefc3;
+  padding: 0 0 15px 50px;
+  margin-bottom: 0;
+}
+#emergency-top-banner a {
+    text-decoration: underline;
+    font-style: bold;
+}
+#emergency-top-banner * {
+      color: #0f0f0f;
+}
+#emergency-top-banner h2 {
+      margin-top: 12px;
+}
+#emergency-top-banner span {
+      color: #414141;
+      font-size: 30px;
+}
+#emergency-top-banner button {
+  padding: 4px 4px 4px 6px;
+  margin-right: 20px;
+}
+
+/*
+mdc:  new additions for updated single-scroll view
+*/
+
+.infinite-item dl.dl-horizontal dt {
+  width: auto;
+  padding: 0 0 0.5em 0;
+  margin-bottom: 0;
+ }
+
+ .infinite-item dl.dl-horizontal dd {
+   margin: 0;
+   padding: 0 0 0.5em 0;
+   clear:both;
+ }
+
+/* removing unneeded spacing */
+ .infinite-item dl.dl-horizontal {
+   padding-bottom: 0px;
+ }
+
+/* just to get some breathing room. this should be in the core CSS, sassified */
+.infinite-item {
+  padding: 5px 0 20px 0;
+}
+
+.infinite-item .record-type-badge {
+  font-family: "Mallory-Book";
+}
+
+/* change tree icons from chevrons to plus/minus icons */
+body #tree-container .expandme .expandme-icon:before {
+    content: "\002b";
+}
+
+body #tree-container .expandme .expandme-icon.expanded:before {
+    content: "\2212";
+}
+
+body #tree-container .expandme .expandme-icon.expanded {
+    transform: none;
+    transition: none;
+}
