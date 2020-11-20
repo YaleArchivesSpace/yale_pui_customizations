@@ -1009,8 +1009,14 @@ color: #040505 !important;
       color: #0f0f0f;
 }
 #emergency-top-banner h2 {
-      margin-top: 12px;
+	margin-top: 12px;
+	color: #47a;
 }
+
+#emergency-top-banner .fa.fa-bell {
+	color: #47a;
+}
+
 #emergency-top-banner span {
       color: #414141;
       font-size: 30px;
