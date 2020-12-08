@@ -1,5 +1,5 @@
 async function load() {
-	fetch( <% j(AppConfig[:covid_json]) %> )
+	fetch( "https://banner.library.yale.edu/banner.json" )
 		.then(response => response.json())
 		.then(data => {
 			let allBanners = data.banners;
