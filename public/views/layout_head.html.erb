@@ -9,7 +9,7 @@
   <% else %>
   <meta name="robots" content="noindex, nofollow">
 <% end %>
-
+  <%= javascript_include_tag "#{@base_url}/assets/covid-banner.js?_t=#{ASConstants.VERSION}" %>
 
 <% if ( [ 'objects', 'resources' ].include?( controller.controller_name  ))  %>
 <!--  expand all, but only if the screen width is gte 768px  -->
