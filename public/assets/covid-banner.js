@@ -28,8 +28,11 @@ async function load() {
 						container.style.backgroundColor = banner.backgroundColor;
 						container.style.color = banner.textColor;
 						**/
-						container.innerHTML += "<h2><i class='fa fa-bell' aria-hidden='true'></i> " + banner.header + "</h2>";
-						// stripping GA code because why?
+						if ( banner.header === "") {
+							container.innerHTML += "<h2><i class='fa fa-bell' aria-hidden='true'></i> Notices</h2>";
+						} else {
+							container.innerHTML += "<h2><i class='fa fa-bell' aria-hidden='true'></i> " + banner.header + "</h2>";
+						}
 						container.innerHTML += "<p>" + banner.message.replace( '?_ga=2.17040304.884377947.1606697973-1161703526.1604969905', '') + "</p>";
 				 }
 			}
