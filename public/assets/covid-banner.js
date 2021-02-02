@@ -8,8 +8,8 @@ async function load() {
 				if (banners.length > 0) {
 					let banner = banners[0];
 					let container = document.getElementById("emergency-top-banner");
-				
-						// Code to apply CSS class based on banner's level
+
+          // Code to apply CSS class based on banner's level
 						let bannerClass = '';
 						switch (banner.level) {
 							case "warning": 
@@ -21,7 +21,7 @@ async function load() {
 							default:
 								bannerClass = 'banner-default';
 						}
-						container.className += " " + bannerClass; 
+						container.className += " " + bannerClass;
 
 						/**
 						// Code to apply text and background color directly
