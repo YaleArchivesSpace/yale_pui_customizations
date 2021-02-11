@@ -9,10 +9,10 @@ async function load() {
 					let banner = banners[0];
 					let container = document.getElementById("emergency-top-banner");
 
-          // Code to apply CSS class based on banner's level
+						// Code to apply CSS class based on banner's level
 						let bannerClass = '';
 						switch (banner.level) {
-							case "warning": 
+							case "warning":
 								bannerClass = 'banner-warning';
 								break;
 							case "severe":
