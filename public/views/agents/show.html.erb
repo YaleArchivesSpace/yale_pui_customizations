@@ -17,6 +17,7 @@
     <% end %>
 
     <%= render partial: 'shared/display_notes' %>
+    <%= render partial: 'shared/report_problem' %>
 
  <% if !@results.blank? && @results['total_hits'] > 0 %>
      <h2><%= t('found', {:count => @results['total_hits'], :type => @results['total_hits'] == 1? t('coll_obj._singular') : t('coll_obj._plural')}) %>:</h2>
@@ -27,7 +28,6 @@
          <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
 
    <% end %>
-   <%= render partial: 'shared/report_problem' %>
   </div>
   <div id="sidebar" class="col-sm-3 sidebar sidebar-container">
     <% if @result.json['names'].length > 1 ||
