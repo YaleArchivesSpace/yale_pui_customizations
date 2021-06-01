@@ -1,0 +1,39 @@
+<%#
+mdc: before/during soft launch, i should harmonize how the ask a question plugin
+and suggest a correction features work.  no reason that they couldn't both be done on the server side,
+and the only thing that would need to change would be pass a parameter to change
+the base URL (or consolidate the two forms into one).
+adding "u" to the mix for URL encoding.
+%>
+<%
+base = "https://web.library.yale.edu/form/archivesspace-pui-suggest-correction"
+context = request.original_url
+title = ['archival_object'].include?(@result['primary_type']) ? u(@result['json']['display_string'].to_s) : u(@result['json']['title'].to_s)
+repo = u(@result['json']['repository']['_resolved']['name'].to_s) if @result['json']['repository']
+callno = u(@result.identifier) if @result.identifier
+@container = Array.new
+@result.container_titles_and_uris.each do |item|
+    @container << u(item['title'])
+  end
+@container = @container.join('; ')
+
+@container_admin = Array.new
+if @result['json']['instances']
+  @result['json']['instances'].each do |instance|
+    next unless instance['sub_container']
+    tc = instance['sub_container']['top_container']['_resolved']['display_string']
+    @container_admin << (u(tc) || "")
+  end
+end
+@container_admin = @container_admin.join('; ')
+%>
+
+<%
+linkurl = "#{base}?URL=#{context}&title=#{title}&repo=#{repo}&callno=#{callno}&container=#{@container}&container_admin=#{@container_admin}"
+%>
+
+<div class="suggest_correction">
+  <a class="btn btn-default btn-xs" href="<%= linkurl %>" target="_blank">
+     Suggest a Correction
+  </a>
+</div>
