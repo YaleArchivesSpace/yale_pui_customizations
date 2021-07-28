@@ -1,9 +1,9 @@
 async function load() {
-	let container = document.getElementById("emergency-top-banner");
-	let bannerMarkup = "";
 	fetch( "https://banner.library.yale.edu/test/banner.json" )
 		.then(response => response.json())
 		.then(data => {
+			let container = document.getElementById("emergency-top-banner");
+			let bannerMarkup = "";
 			let allBanners = data.banners;
 			if ("global" in allBanners) {
 				let banners = allBanners.global;
