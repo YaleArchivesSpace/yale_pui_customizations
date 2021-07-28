@@ -22,7 +22,7 @@ en:
     subject_intro: |
         <div class="alert alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <p class="well">ubject records are topics, places, and genres used to describe the context and content of archival materials. In Archives at Yale, users can view a subject record to see Yale collections relating to that topic, place, or genre. Subject records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress. Subject headings may contain oppressive, outdated, or harmful language. Their use is not an endorsement of the language they contain.</p>
+          <p class="well">Subject records are topics, places, and genres used to describe the context and content of archival materials. In Archives at Yale, users can view a subject record to see Yale collections relating to that topic, place, or genre. Subject records are shared across all libraries and repositories at Yale, and staff choose them from controlled lists, including the Library of Congress. Subject headings may contain oppressive, outdated, or harmful language. Their use is not an endorsement of the language they contain.</p>
         </div>
     agent_intro: |
         <div class="alert alert-dismissible" role="alert">
