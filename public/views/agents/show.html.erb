@@ -15,10 +15,8 @@
       <h2><%= t('agent._public.section.dates_of_existence') %></h2>
       <%= render partial: 'shared/dates', locals: {:dates => @result.dates} %>
     <% end %>
-
     <%= render partial: 'shared/display_notes' %>
     <%= render partial: 'shared/report_problem' %>
-
  <% if !@results.blank? && @results['total_hits'] > 0 %>
      <h2><%= t('found', {:count => @results['total_hits'], :type => @results['total_hits'] == 1? t('coll_obj._singular') : t('coll_obj._plural')}) %>:</h2>
          <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
@@ -26,7 +24,6 @@
            <%= render partial: 'shared/result', locals: {:result => result, :props => {:full => false}} %>
          <% end %>
          <%= render partial: 'shared/pagination', locals: {:pager  => @pager}  %>
-
    <% end %>
   </div>
   <div id="sidebar" class="col-sm-3 sidebar sidebar-container">
@@ -58,7 +55,6 @@
     </script>
 
   <% end %>
-
   <% if !@facets.blank? || !@filters.blank? %>
   <%= render partial: 'shared/facets' %>
   <% end %>
