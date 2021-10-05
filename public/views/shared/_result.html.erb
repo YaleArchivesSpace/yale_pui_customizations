@@ -1,0 +1,204 @@
+<%# any result that is going to be presented in a list %>
+<%# Pry::ColorPrinter.pp(result['json'])%>
+
+
+<%# new stuff
+mdc: not good to add this here,
+but i got errors otherwise, so i modified the function from
+our plugin and plopped it in this view for now %>
+<%
+def romanize(number)
+  return '' if number == 0
+  roman_numbers = {
+    1000 => "M",
+    900 => "CM",
+    500 => "D",
+    400 => "CD",
+    100 => "C",
+    90 => "XC",
+    50 => "L",
+    40 => "XL",
+    10 => "X",
+    9 => "IX",
+    5 => "V",
+    4 => "IV",
+    1 => "I",
+    0 => "",
+  }
+  roman_numbers.each do |value, letter|
+    return ( letter * (number / value)) << romanize(number % value) if value <= number
+  end
+  return romanize(number % value)
+end
+%>
+
+<%
+if result.primary_type == "top_container" && result['json']['series'].try(:any?)
+  @all_series = Array.new
+  result['json']['series'].each do |series|
+     identifier = series['identifier'].to_i != 0 ? romanize(series['identifier'].to_i) : series['identifier']
+     @all_series << (identifier + '. ' || "") +
+     CGI.unescapeHTML(sanitize(series['display_string'], :tags=>[]))
+  end
+  @all_series = @all_series.join('; ')
+end
+%>
+
+<%# can't do something like result.dates since the record is not "full"
+should also filter dates out unless they're creation, broadcast, or whatever (e.g. don't include "digitizatoin" dates)
+but since we don't do that anyway, i haven't yet added that filter.
+update: we just want to add those dates for resources and archival objects.  without the primary type check, the agents were also getting associated collection material dates!... confusing.  but we might want to add dates of existence to the agent record results.
+also, not adding to digital objects to the primary type check right now since ideally those wouldn't be an object type, but just another data attribute tied to material description.
+%>
+<%
+if result.primary_type.in?(['resource', 'archival_object']) && result['json']['dates'].try(:any?)
+ @all_dates = Array.new
+ len = result['json']['dates'].length
+ result['json']['dates'].each do |date|
+   if date['date_type'] == 'bulk' && not(date['expression'].to_s.include? 'bulk')
+     leader = t('bulk-date-leader') + ' '
+   end
+     @all_dates << (leader || "") +
+       if date.has_key?('expression')
+         date['expression']
+       elsif date.has_key?('begin') && date.has_key?('end')
+         date['begin'] + "-" + date['end']
+       elsif date.has_key?('begin')
+         date['begin']
+       elsif date.has_key?('end')
+         "-" + date['end']
+       end
+  end
+  @all_dates = @all_dates.collect(&:strip).join(", ")
+end
+%>
+<%# end new stuff %>
+
+<% if !props.fetch(:full,false) %>
+  <div class="recordrow" style="clear:both" data-uri="<%= result.uri %>">
+<% end %>
+    <%= render partial: 'shared/thumbnail', locals: {
+        :result => result,
+        :thumbnail_link => app_prefix(result.uri),
+        :show_spacer => true,
+      }
+    %>
+    <div class="recordresult">
+    <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
+    <div class="recordsummary" style="clear:both">
+      <% if !result['parent_institution_name'].blank? %>
+      <div><strong><%= t('parent_inst') %>:</strong>
+        <%= result['parent_institution_name'] %>
+      </div>
+      <% end %>
+
+      <% note_struct = result.note('abstract')
+         if note_struct.blank?
+            note_struct = result.note('scopecontent')
+         end
+         if !note_struct['note_text'].blank? %>
+         <div class="abstract single_note">
+           <span class='inline-label'>
+             <%# local bit of code to add a colon if the
+             note does NOT end with one %>
+             <% if note_struct['label'].end_with?(":") %>
+               <%= note_struct['label'] %>
+             <% else %>
+               <%= note_struct['label'] + ":" %>
+             <% end %>
+           </span>
+           <% unless note_struct['is_inherited'].blank? %>
+             <%= inheritance(note_struct['is_inherited']).html_safe %>
+           <% end %>
+          <% if note_struct['note_text'].length > AppConfig[:abstract_note_length] %>
+            <% truncated_note = note_struct['note_text'][0..AppConfig[:abstract_note_length]-1] %>
+            <% end_index = truncated_note.rindex(' ') || AppConfig[:abstract_note_length]-1 %>
+            <%= strip_tags(truncated_note[0..end_index - 1]) + '...' %>
+          <% else %>
+      <%= note_struct['note_text'].html_safe %>
+          <% end %>
+         </div>
+        <% end %>
+      <% unless props.fetch(:no_repo, false) %>
+      <% r_uri = nil
+         r_name = nil
+         if result['json']['repository'] && result['json']['repository']['_resolved'] && (!result['json']['repository']['ref'].blank? || !result['json']['repository']['_resolved']['name'].blank?)
+            r_uri = result['json']['repository']['ref'] || ''
+            r_name = result['json']['repository']['_resolved']['name'] || ''
+         elsif result['_resolved_repository'] && result['_resolved_repository']['json']
+            r_uri =  result['_resolved_repository']['json']['uri'] || ''
+            r_name = result['_resolved_repository']['json']['name'] || ''
+        end
+      %>
+   <% end %>
+
+   <%# more new %>
+   <% if defined?@all_series %>
+   <div class="result_context">
+     <strong><%= t('search_results.filter.published_series_title_u_sstr') %>: </strong>
+     <%= @all_series %>
+   </div>
+   <% end %>
+
+   <% if defined?@all_dates %>
+   <div class="result_context">
+     <strong><%= t('date-label') %>: </strong>
+     <%= @all_dates %>
+   </div>
+   <% end %>
+   <%# end new %>
+
+   <% if result.resolved_repository %>
+     <div class="result_context">
+
+      <%# new stuff, but also need to fix the repo name that's used on repository search results, which includes the short name needlessly %>
+       <% if result.primary_type == 'repository' %>
+       <div><strong><%= t('parent_inst') %>:</strong>
+         <%= result.resolved_repository.fetch('parent_institution_name') %>
+       </div>
+       <% else %>
+       <strong><%= t('context') %>: </strong>
+       <span  class="repo_name">
+         <%= link_to result.resolved_repository.fetch('name'), app_prefix(result.resolved_repository.fetch('uri')) %>
+       </span>
+       <% end %>
+
+
+       <% if result.respond_to?(:ancestors) && result.ancestors %>
+         <% result.ancestors.each do |ancestor| %>
+           <%= t('context_delimiter') %>
+           <span class="ancestor">
+           <%= link_to process_mixed_content(ancestor.fetch('title', "[#{ ancestor.fetch('level', 'untitled')}]" )).html_safe, app_prefix(ancestor.fetch('uri')) %>
+           </span>
+         <% end %>
+       <% else %>
+         <% unless props.fetch(:no_res, false) || result.resolved_resource.blank? %>
+           <%= t('context_delimiter') %>
+           <span class="resource_name">
+             <%= link_to process_mixed_content(result.resolved_resource.fetch('title')).html_safe, app_prefix(result.resolved_resource.fetch('uri')) %>
+           </span>
+         <% end %>
+       <% end %>
+     </div>
+   <% end %>
+
+
+      <% if !props.fetch(:full,false)  && result['primary_type'] == 'repository' %>
+      <div><strong><%= t('number_of', { :type => t('resource._plural') }) %></strong> <%= @counts[result.uri]['resource'] %></div>
+      <% end %>
+
+    <% if result.primary_type == 'classification' && result.classification_terms? %>
+    <div class="classification-subgroups">
+      <button class="btn btn-default btn-sm subgroup-toggle" aria-pressed="false">
+        <i aria-hidden="true" class="fa fa-plus"></i>
+        <%= t('classification._public.actions.show_subgroups') %>
+      </button>
+      <div class="classification-subgroups-tree largetree-container" style="display: none;"></div>
+    </div>
+    <% end %>
+  </div>
+
+  </div>
+<% if !props.fetch(:full,false) %>
+  </div>
+<% end %>
