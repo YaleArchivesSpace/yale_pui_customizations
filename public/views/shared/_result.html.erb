@@ -77,6 +77,8 @@ end
 <% if !props.fetch(:full,false) %>
   <div class="recordrow" style="clear:both" data-uri="<%= result.uri %>">
 <% end %>
+
+    <div class="recordresult">
     <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
     <div class="recordsummary" style="clear:both">
       <% if !result['parent_institution_name'].blank? %>
@@ -143,10 +145,19 @@ end
 
    <% if result.resolved_repository %>
      <div class="result_context">
+
+      <%# new stuff, but also need to fix the repo name that's used on repository search results, which includes the short name needlessly %>
+       <% if result.primary_type == 'repository' %>
+       <div><strong><%= t('parent_inst') %>:</strong>
+         <%= result.resolved_repository.fetch('parent_institution_name') %>
+       </div>
+       <% else %>
        <strong><%= t('context') %>: </strong>
        <span  class="repo_name">
          <%= link_to result.resolved_repository.fetch('name'), app_prefix(result.resolved_repository.fetch('uri')) %>
        </span>
+       <% end %>
+
 
        <% if result.respond_to?(:ancestors) && result.ancestors %>
          <% result.ancestors.each do |ancestor| %>
@@ -182,6 +193,7 @@ end
     <% end %>
   </div>
 
+  </div>
 <% if !props.fetch(:full,false) %>
   </div>
 <% end %>
