@@ -1069,3 +1069,16 @@ body #tree-container .expandme .expandme-icon.expanded {
     transform: none;
     transition: none;
 }
+
+/* new: for OHAM indent */
+li.subrepo a {
+  margin-left: 24px;
+}
+span.subrepo-branch {
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  border-left: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  margin-left: 26px;
+}
