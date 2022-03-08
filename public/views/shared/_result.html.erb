@@ -77,8 +77,6 @@ end
 <% if !props.fetch(:full,false) %>
   <div class="recordrow" style="clear:both" data-uri="<%= result.uri %>">
 <% end %>
-
-    <div class="recordresult">
     <%= render partial: 'shared/idbadge', locals: {:result => result, :props => props } %>
     <div class="recordsummary" style="clear:both">
       <% if !result['parent_institution_name'].blank? %>
