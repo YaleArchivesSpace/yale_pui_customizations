@@ -145,7 +145,7 @@ end
      <div class="result_context">
 
       <%# new stuff, but also need to fix the repo name that's used on repository search results, which includes the short name needlessly %>
-       <% if result.primary_type == 'repository' %>
+       <% if result.primary_type == 'repository' && result.resolved_repository.try(:fetch, 'parent_institution_name', nil) %>
        <div><strong><%= t('parent_inst') %>:</strong>
          <%= result.resolved_repository.fetch('parent_institution_name') %>
        </div>
