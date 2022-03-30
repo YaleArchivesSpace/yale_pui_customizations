@@ -5,7 +5,6 @@
  - result: the repository hash
 %>
 <% if !full %><div class="recordrow"><% end %>
-
 <%# Yale override to only show title and badge on search results %>
 <% unless full %>
   <h3>
@@ -24,8 +23,11 @@
 <% end %>
 
 <div class="<%= (full ? 'clear' : 'recordsummary') %>">
-  <%# we've removed the Parent Institution information from here,
-          since all of the repos are part of Yale %>
+  <% if result['parent_institution_name'].present? %>
+  <div><strong><%= t('parent_inst') %>:</strong>
+    <%= result['parent_institution_name'] %>
+  </div>
+  <% end %>
   <% if full %>
     <%= render partial: 'repositories/full_repo', locals: {:info => result['repo_info'], :url => result['url']} %>
   <% else %>

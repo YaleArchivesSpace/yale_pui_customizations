@@ -16,6 +16,7 @@ callno = u(@result.identifier) if @result.identifier
     @container << u(item['title'])
   end
 @container = @container.join('; ')
+
 @container_admin = Array.new
 if @result['json']['instances']
   @result['json']['instances'].each do |instance|
