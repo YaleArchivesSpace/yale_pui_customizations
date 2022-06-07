@@ -65,12 +65,19 @@ en:
   bulk-date-leader: bulk
   date-label: Dates
 
+  accession:
+    _singular: Unprocessed/Unavailable
+    _plural: Unprocessed/Unavailable
 
   resource:
     _public:
       identifier: Call Number
       related_accessions:
         accessions: Unprocessed Records
+
+  accession:
+    _singular: Unprocessed Material
+    _plural: Unprocessed Materials
 
   inherit:
     file: Parent Record

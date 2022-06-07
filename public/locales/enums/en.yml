@@ -141,3 +141,5 @@ en:
       local_walpole: "Local (Walpole)"
       local_ycba_ia: "Local (YCBA-IA)"
       local_ycba_rbm: "Local (YCBA-RBM)"
+    resource_finding_aid_status:
+      unprocessed: Unprocessed/Unavailable
