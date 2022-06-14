@@ -65,6 +65,9 @@ en:
   bulk-date-leader: bulk
   date-label: Dates
 
+  accession:
+    _singular: Unprocessed/Unavailable
+    _plural: Unprocessed/Unavailable
 
   resource:
     _public:
