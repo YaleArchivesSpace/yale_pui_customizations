@@ -75,10 +75,6 @@ en:
       related_accessions:
         accessions: Unprocessed Records
 
-  accession:
-    _singular: Unprocessed Material
-    _plural: Unprocessed Materials
-
   inherit:
     file: Parent Record
 
