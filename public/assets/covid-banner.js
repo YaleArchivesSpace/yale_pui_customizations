@@ -29,12 +29,18 @@ async function load() {
 						container.style.backgroundColor = banner.backgroundColor;
 						container.style.color = banner.textColor;
 						**/
-						if ( banner.header === "") {
+						if ( banner.header.trim() === "") {
 							bannerMarkup = "<h2><i class='fa fa-bell' aria-hidden='true'></i> Notices</h2>";
 						} else {
 							bannerMarkup = "<h2><i class='fa fa-bell' aria-hidden='true'></i> " + banner.header + "</h2>";
 						}
-						bannerMarkup += "<p>" + banner.message.replace( '?_ga=2.17040304.884377947.1606697973-1161703526.1604969905', '') + "</p>";
+						if ( banner.message.trim() === "") {
+							bannerMarkup += "<p>There are no notices at this time.</p>";
+						} else {
+							bannerMarkup += "<p>" + banner.message.replace( '?_ga=2.17040304.884377947.1606697973-1161703526.1604969905', '') + "</p>";
+						}
+
+
 				 }
 			} else {
 				bannerMarkup = "<h2><i class='fa fa-bell' aria-hidden='true'></i> Notices</h2><p>There are no notices at this time.</p>";
