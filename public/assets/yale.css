@@ -1087,3 +1087,37 @@ span.subrepo-branch {
   border-bottom: 2px solid #ddd;
   margin-left: 26px;
 }
+
+/*mdc: ask about updating this in the sass files in our fork, instead */
+/* this is due to the fact that the search results on top conatainer, subject, agent, etc., pages are not in a search-results div*/
+.recordrow {
+  display: flex;
+}
+.recordrow .pui-thumbnail {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex:0 0 84px
+}
+.recordrow .pui-thumbnail-spacer {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex:0 0 84px
+}
+.recordrow .pui-thumbnail {
+  float: none;
+  border: none;
+  min-width: initial;
+  margin:0
+}
+.recordrow .pui-thumbnail img {
+  object-fit: cover;
+  object-position: center;
+  height: 80px;
+  width:80px
+}
+.recordrow .pui-thumbnail .pui-thumbnail-caption {
+  display:none
+}
+.recordrow .pui-thumbnail .pui-thumbnail-help-text {
+  display:none
+}
