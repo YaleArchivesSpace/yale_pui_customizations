@@ -512,8 +512,8 @@ not just a regular definiton list, with a bit of padding for the dd elements */
   font-family: "Mallory-Medium";
 }
 
-/*mdc: new patch to remove newly-added icons from displaying in our locally styled breadcrumbs, aside from the last list item, which doensn't have as much pennant-style stylin' */
-ul.breadcrumb > li:not(:last-child) span {
+/*mdc: new patch to remove newly-added icons from the pennant-style stylin' of our breadcrumbs */
+ul.breadcrumb > li span {
   display: none;
 }
 
