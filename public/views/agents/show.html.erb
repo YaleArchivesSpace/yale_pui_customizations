@@ -32,7 +32,9 @@
     <%# Yale override: we are only adding this local override for the Suggest a Correction feature.  Too bad there's not a shared file that could be a placeholder, but that could be a good feature request. %>
     <%= render partial: 'shared/report_problem' %>
     <%# FOUND IN SECTION %>
-    <%= render partial: 'shared/results', locals: {:results => @results, :pager => @pager} %>
+    <div class="concept-records">
+      <%= render partial: 'shared/results', locals: {:results => @results, :pager => @pager} %>
+    </div>
   </div>
 
   <% if show_agents_sidebar?(@result) %>
