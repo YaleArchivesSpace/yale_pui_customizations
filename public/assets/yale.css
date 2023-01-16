@@ -512,6 +512,11 @@ not just a regular definiton list, with a bit of padding for the dd elements */
   font-family: "Mallory-Medium";
 }
 
+/*mdc: new patch to remove newly-added icons from displaying in our locally styled breadcrumbs, aside from the last list item, which doensn't have as much pennant-style stylin' */
+ul.breadcrumb > li:not(:last-child) span {
+  display: none;
+}
+
 /*mdc: i just can't stand those rounded pills no more */
 /* line 109 aspace.scss */
 .tabbing.nav-pills > li:first-child a {
