@@ -1089,8 +1089,12 @@ span.subrepo-branch {
 }
 
 /*mdc: ask about updating this in the sass files in our fork, instead */
-/* this is due to the fact that the search results on top conatainer, subject, agent, etc., pages are not in a search-results div*/
-.recordrow {
+/* what's below is a repeat of delcarations from thumbnails.scss, which is needed somewhere due to the fact that the search results on top conatainer, subject, agent, etc., pages are not in a search-results div*/
+/* and... the col-sm-12 bit is to ensure that the repository record rows will NOT get flexed in the same way, since those are in a bootstrap column of size 9 (or we could put the repo thumnbail in the pui thumbnail area, but since we don't use those right now)...
+so yeah, that last part is brittle, but it does not rely on any CSS selectors that are not available in every browser...
+but really, aspace should have classed divs for each type, or at least a consistent class.  right now, there are .containers, .search-results, and
+a whole lotta nothing on the other browse pages, e.g. for repositories, subjects, agents, etc. */
+.col-sm-12 .recordrow {
   display: flex;
 }
 .recordrow .pui-thumbnail {
