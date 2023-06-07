@@ -1,4 +1,10 @@
 if IndexerCommonConfig.respond_to?(:exclude_from_public_keyword_search)
   IndexerCommonConfig.exclude_from_public_keyword_search('accession', 'general_note')
   IndexerCommonConfig.exclude_from_public_keyword_search('accession', 'payment_summary')
+  IndexerCommonConfig.exclude_from_public_keyword_search('repository', 'location')
+  IndexerCommonConfig.exclude_from_public_keyword_search('resource', 'ead_location')
+  IndexerCommonConfig.exclude_from_public_keyword_search('resource', 'finding_aid_status')
+  IndexerCommonConfig.exclude_from_public_keyword_search('resource', 'finding_aid_description_rules')
+  IndexerCommonConfig.exclude_from_public_keyword_search('resource', 'level')
+  IndexerCommonConfig.exclude_from_public_keyword_search('archival_object', 'level')
 end
