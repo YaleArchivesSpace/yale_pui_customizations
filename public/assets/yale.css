@@ -512,8 +512,8 @@ not just a regular definiton list, with a bit of padding for the dd elements */
   font-family: "Mallory-Medium";
 }
 
-/*mdc: new patch to remove newly-added icons from the pennant-style stylin' of our breadcrumbs */
-ul.breadcrumb > li span {
+/* krkptrk: 3.3.1 refinement of previous patch to address icons more narrowly */
+ul.breadcrumb > li span.record-type-badge {
   display: none;
 }
 
