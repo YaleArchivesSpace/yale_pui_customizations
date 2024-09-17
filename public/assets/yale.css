@@ -512,6 +512,11 @@ not just a regular definiton list, with a bit of padding for the dd elements */
   font-family: "Mallory-Medium";
 }
 
+/* krkptrk: 3.3.1 refinement of previous patch to address icons more narrowly */
+ul.breadcrumb > li span.record-type-badge {
+  display: none;
+}
+
 /*mdc: i just can't stand those rounded pills no more */
 /* line 109 aspace.scss */
 .tabbing.nav-pills > li:first-child a {
@@ -1081,4 +1086,39 @@ span.subrepo-branch {
   border-left: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
   margin-left: 26px;
+}
+
+/*mdc: review and fix later.  see thumbnails.scss */
+/* and current issues in PROD, e.g. https://archives.yale.edu/repositories/11/resources/1529/digital_materials 
+vs. https://archives.yale.edu/repositories/11/top_containers/350870 */
+.concept-records .recordrow, .containers .recordrow {
+  display: flex;
+}
+.recordrow .pui-thumbnail {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex:0 0 84px
+}
+.recordrow .pui-thumbnail-spacer {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex:0 0 84px
+}
+.recordrow .pui-thumbnail {
+  float: none;
+  border: none;
+  min-width: initial;
+  margin:0
+}
+.recordrow .pui-thumbnail img {
+  object-fit: cover;
+  object-position: center;
+  height: 80px;
+  width:80px
+}
+.recordrow .pui-thumbnail .pui-thumbnail-caption {
+  display:none
+}
+.recordrow .pui-thumbnail .pui-thumbnail-help-text {
+  display:none
 }
