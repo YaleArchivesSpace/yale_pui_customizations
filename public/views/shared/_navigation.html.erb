@@ -32,33 +32,31 @@ for now i just pulled up the aria-label and added it to the section element %>
               <%= t('repository._plural') %> <span class="caret hidden-xs"></span></a>
             <ul class="dropdown-menu hidden-xs">
 
-<%#
-need a real way to do this...
-but for now, i'm just hardcoding this as a proof of concept
-(before moving into PROD, move the CSS bit outta here, too.)
-%>
+<% repo_lookup = yale_repo_lookup %>
 
-<li style="font-weight:800; margin-left:14px">Yale Library</li>
+<% YALE_NAV_CONFIG['groups'].each_with_index do |group, i| %>
+  <li style="font-weight:800; margin-left:14px"><%= group['label'] %></li>
 
-<li><a href="<%= app_prefix("/repositories/5") %>">Arts Library</a></li>
-<li><a href="<%= app_prefix("/repositories/11") %>">Beinecke Library</a></li>
-<li><a href="<%= app_prefix("/repositories/4") %>">Divinity Library</a></li>
-<li><a href="<%= app_prefix("/repositories/8") %>">Lewis Walpole Library</a></li>
-<li><a href="<%= app_prefix("/repositories/12") %>">Manuscripts and Archives</a></li>
-<li><a href="<%= app_prefix("/repositories/10") %>">Medical Historical Library</a></li>
-<li><a href="<%= app_prefix("/repositories/6") %>">Music Library</a></li>
-<li class="subrepo"><span class="subrepo-branch"></span><a href="<%= app_prefix("/repositories/7") %>">Oral History of American Music</a></li>
+  <% group['repos'].each do |repo_config| %>
+    <% repo = repo_lookup[repo_config['code']] %>
+    <% next unless repo %>
 
-<li role="separator" class="divider"></li>
-<li style="font-weight:800; margin-left:14px">Yale Center for British Art</li>
+    <li><a href="<%= app_prefix(repo['uri']) %>"><%= repo_config['display_name'] || repo['name'] %></a></li>
 
-<li><a href="<%= app_prefix("/repositories/3") %>">Institutional Archives</a></li>
-<li><a href="<%= app_prefix("/repositories/2") %>">Rare Books and Manuscripts</a></li>
+    <% Array(repo_config['children']).each do |child_config| %>
+      <% child = repo_lookup[child_config['code']] %>
+      <% next unless child %>
+      <li class="subrepo">
+        <span class="subrepo-branch"></span>
+        <a href="<%= app_prefix(child['uri']) %>"><%= child_config['display_name'] || child['name'] %></a>
+      </li>
+    <% end %>
+  <% end %>
 
-<li role="separator" class="divider"></li>
-<li style="font-weight:800; margin-left:14px">Yale Peabody Museum</li>
-
-<li><a href="<%= app_prefix("/repositories/15") %>">Peabody Museum of Natural History</a></li>
+  <% unless i == YALE_NAV_CONFIG['groups'].length - 1 %>
+    <li role="separator" class="divider"></li>
+  <% end %>
+<% end %>
 
             </ul>
           </li>
