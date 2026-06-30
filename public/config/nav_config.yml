@@ -1,0 +1,27 @@
+groups:
+  - label: "Yale Library"
+    repos:
+      - code: Arts
+        display_name: "Arts Library"
+      - code: BRBL
+        display_name: "Beinecke Library"
+      - code: Divinity
+        display_name: "Divinity Library"
+      - code: Walpole
+      - code: MSSA
+      - code: Medical
+        display_name: "Medical Historical Library"
+      - code: Music
+        display_name: "Music Library"
+        children:
+          - code: OHAM
+  - label: "Yale Center for British Art"
+    repos:
+      - code: YCBA-IA
+        display_name: "Institutional Archives"
+      - code: YCBA-RBM
+        display_name: "Rare Books and Manuscripts"
+  - label: "Yale Peabody Museum"
+    repos:
+      - code: Peabody
+        display_name: "Peabody Museum of Natural History"

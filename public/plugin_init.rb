@@ -1,5 +1,15 @@
 Rails.application.config.after_initialize do
 
+  yale_nav_config_path = File.join(File.dirname(__FILE__), 'config', 'nav_config.yml')
+  YALE_NAV_CONFIG = YAML.load_file(yale_nav_config_path).freeze
+
+  ApplicationHelper.module_eval do
+    def yale_repo_lookup
+      repos = MemoryLeak::Resources.get(:repository) || []
+      repos.each_with_object({}) { |r, h| h[r['repo_code']] = r if r['repo_code'] }
+    end
+  end
+
   RecordHelper.class_eval do
     # Override icon_for_type to apply custom Yale icons
     def icon_for_type(primary_type)
