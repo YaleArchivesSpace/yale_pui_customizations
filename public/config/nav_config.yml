@@ -8,6 +8,8 @@ groups:
       - code: Divinity
         display_name: "Divinity Library"
       - code: Walpole
+      - code: LAW
+        display_name: "Lillian Goldman Law Library"
       - code: MSSA
       - code: Medical
         display_name: "Medical Historical Library"
